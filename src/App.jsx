@@ -57,7 +57,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/Work" element={<Work />} />
+          <Route path="/works" element={<Work />} />
         </Routes>
       </main>
       <BtnTop />

@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 
 import Modal from "../components/Modal";
 import Form from "../components/Form";
+import { featuredProjects } from "../data/projects";
 import { RocketPath } from "../components/Graphics/RocketPath";
 import { Rocket } from "../components/Graphics/Rocket";
 import { RocketPathMobile } from "../components/Graphics/RocketPathMobile";
@@ -206,15 +207,6 @@ function Home() {
     setIsModalOpen(false);
   };
 
-  // Project Modal Datas
-  const projectData01 = {
-    title: "Title",
-    company: "우리집",
-    period: "2023.01.01 ~ 2023.03.01",
-    role: "Frontend Developer",
-    techStack: ["React", "JavaScript", "HTML", "CSS"], // Array
-    summary: "요약입니다.",
-  };
 
   return (
     <div className="wrap">
@@ -278,15 +270,19 @@ function Home() {
       <section className="section section03">
         <div className="inner">
           <div className="works">
-            <div
-              className="work work01"
-              onClick={() => openModal(projectData01)}
-            >
-              test1
-            </div>
-            <div className="work work02">test2</div>
-            <div className="work work03">test3</div>
+            {featuredProjects.map((project, idx) => (
+              <div
+                key={project.id}
+                className={`work work0${idx + 1}`}
+                onClick={() => openModal(project)}
+              >
+                {project.title}
+              </div>
+            ))}
           </div>
+          <Link to="/works" className="btn-more">
+            더보기
+          </Link>
         </div>
       </section>
       {/* section04: career */}
@@ -516,32 +512,13 @@ function Home() {
         </div>
       </section>
 
-      {/* Modals */}
+      {/* Modal */}
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
-        projectData={projectData01}
+        projectData={selectedProject}
       >
-        {/* 자유롭게 작성하는 상세 내용 */}
-        <div className="project-details">
-          <h3>🎯 주요 성과</h3>
-          <ul>
-            <li>페이지 로딩 속도 40% 개선</li>
-            <li>사용자 만족도 90% 달성</li>
-          </ul>
-
-          <h3>🔧 해결한 문제</h3>
-          <p>
-            초기에 상태 관리가 복잡해서 렌더링 성능 이슈가 있었는데, Redux
-            구조를 재설계하고 useMemo를 적절히 활용해서...
-          </p>
-
-          <h3>💡 배운 점</h3>
-          <p>
-            성능 최적화의 중요성을 깨달았고, 앞으로는... 어쩌고저쩌고... 저를
-            뽑아주세요. 집에 먹여살려야 할 종이남친이 셋이나 있어요...
-          </p>
-        </div>
+        {selectedProject?.content}
       </Modal>
     </div>
   );

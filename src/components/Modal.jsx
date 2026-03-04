@@ -68,6 +68,9 @@ function Modal({ isOpen, onClose, projectData, children }) {
       Angular: "script",
       "Nuxt.js": "script",
 
+      // 앱 개발
+      "React Native": "app",
+
       // 웹서버
       "Node.js": "server",
       "Nest.js": "server",
@@ -107,20 +110,30 @@ function Modal({ isOpen, onClose, projectData, children }) {
         <div className="modal-body">
           {/* 기본 정보 영역 */}
           <div className="modal-info">
-            <div className="info-grid">
-              <div className="info">
-                소속:
-                <span>{company}</span>
-              </div>
-              <div className="info">
-                기간:
-                <span>{period}</span>
-              </div>
-              <div className="info">
-                역할:
-                <span>{role}</span>
-              </div>
-            </div>
+            {company ||
+              period ||
+              (role && (
+                <div className="info-grid">
+                  {company && (
+                    <div className="info">
+                      소속:
+                      <span>{company}</span>
+                    </div>
+                  )}
+                  {period && (
+                    <div className="info">
+                      기간:
+                      <span>{period}</span>
+                    </div>
+                  )}
+                  {role && (
+                    <div className="info">
+                      역할:
+                      <span>{role}</span>
+                    </div>
+                  )}
+                </div>
+              ))}
             {techStack && (
               <div className="tech-stack">
                 {techStack.map((tech) => (

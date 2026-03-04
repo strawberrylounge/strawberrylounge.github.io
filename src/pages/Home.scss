@@ -39,7 +39,6 @@
     right: 0;
     bottom: 0;
     display: block;
-    pointer-events: none;
   }
   // 작은 별들
   &::before {
@@ -267,6 +266,11 @@
               }
             }
           }
+        }
+        .btn-more {
+          margin-top: 16px;
+          color: color("saturn-gold");
+          // text-decoration: underline;
         }
       }
     }
