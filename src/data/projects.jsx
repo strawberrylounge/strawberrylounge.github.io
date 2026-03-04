@@ -7,7 +7,7 @@ export const projects = [
   {
     id: "project01",
     featured: true,
-    title: "기분기록지(App)",
+    title: "mood-diary",
     techStack: ["React Native", "TypeScript", "HTML", "SCSS"],
     summary: "작성 중...",
     content: <div className="project-details">작성 중...</div>,
@@ -32,6 +32,39 @@ export const projects = [
         </p>
         <h3>💡 배운 점</h3>
         <p>성능 최적화의 중요성을 깨달았고, 앞으로는...</p>
+      </div>
+    ),
+  },
+  {
+    id: "project03",
+    featured: true,
+    title: "푸르넷 예비교사 온라인 교육",
+    company: "금성출판사",
+    period: "2026.01.05 ~ 2026.02.12",
+    role: "프론트엔드 개발",
+    techStack: ["jsp", "SCSS", "javaScript", "jQuery"],
+    summary: "푸르넷 예비교사 대상 온라인 학습 사이트 개발",
+    content: (
+      <div className="project-details">
+        <hgroup>
+          <h3>📌 작업 배경</h3>
+          <p className="word-keep-all">
+            기존에 외부 협력업체에서 관리하던 사이트를 내부에서 개발 및
+            운영하고자 개발 요청.
+          </p>
+        </hgroup>
+
+        <hgroup>
+          <h3>🛠️ 담당한 작업</h3>
+          <p>마크업(jsp) 및 스타일(SCSS) 관련 디렉토리 구조 설계</p>
+          <p>정적 리소스 관리 방식</p>
+        </hgroup>
+
+        {/* <h3>🌱 새롭게 다룬 환경</h3>
+        <p>JSP · 레거시 CSS 등 낯선 기반에서 작업하며 겪은 것들</p> */}
+
+        <h3>🪨 이슈 & 해결</h3>
+        <p>작업 중 마주친 문제와 어떻게 풀었는지</p>
       </div>
     ),
   },

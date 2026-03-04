@@ -49,6 +49,7 @@ function Modal({ isOpen, onClose, projectData, children }) {
     const techClassMap = {
       // 마크업
       HTML: "default",
+      jsp: "default",
 
       // 스타일
       SCSS: "style",
@@ -61,12 +62,13 @@ function Modal({ isOpen, onClose, projectData, children }) {
 
       // 프론트엔드 스크립트
       React: "script",
-      JavaScript: "script",
-      TypeScript: "script",
+      javaScript: "script",
+      typeScript: "script",
       "Next.js": "script",
       "Vue.js": "script",
       Angular: "script",
       "Nuxt.js": "script",
+      jQuery: "script",
 
       // 앱 개발
       "React Native": "app",
@@ -162,7 +164,12 @@ function Modal({ isOpen, onClose, projectData, children }) {
           {links && (
             <div className="modal-links">
               {links.map((link, idx) => (
-                <a key={idx} href={link.url} target="_blank" rel="noopener">
+                <a
+                  key={idx}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {link.label}
                 </a>
               ))}
