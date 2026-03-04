@@ -115,7 +115,7 @@
   */
   html,
   body {
-    height: auto;
+    height: 100%;
     min-height: 100%;
     font-display: optional;
     line-height: 1.15; /* 1 */
@@ -556,11 +556,11 @@
   /**
   * React에서의 기본 세팅
   */
-  #root {
-    position: relative;
-  }
+  #root,
   #main {
     position: relative;
+    height: 100%;
+    min-height: 100%;
   }
 
   /* CSS - 스크롤 동작 완전 제어 */
