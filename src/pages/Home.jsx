@@ -8,7 +8,6 @@ import { useGSAP } from "@gsap/react";
 
 import Modal from "../components/Modal";
 import Form from "../components/Form";
-import { featuredProjects } from "../data/projects";
 import { RocketPath } from "../components/Graphics/RocketPath";
 import { Rocket } from "../components/Graphics/Rocket";
 import { RocketPathMobile } from "../components/Graphics/RocketPathMobile";
@@ -17,6 +16,8 @@ import { Astronaut } from "../components/Graphics/Astronaut";
 import IconGithub from "../components/Icons/IconGithub";
 import IconLinkedin from "../components/Icons/IconLinkedin";
 import IconMedium from "../components/Icons/IconMedium";
+
+import { featuredProjects } from "../data/projects";
 
 import "./Home.scss";
 
@@ -206,7 +207,6 @@ function Home() {
     setSelectedProject(null);
     setIsModalOpen(false);
   };
-
 
   return (
     <div className="wrap">

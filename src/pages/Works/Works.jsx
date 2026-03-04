@@ -3,6 +3,8 @@ import { useState } from "react";
 import Modal from "../../components/Modal";
 import { projects } from "../../data/projects";
 
+import "./Works.scss";
+
 function Works() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -19,21 +21,19 @@ function Works() {
 
   return (
     <div className="wrap">
-      <section className="section section-works">
-        <div className="inner">
-          <div className="works">
-            {projects.map((project, idx) => (
-              <div
-                key={project.id}
-                className={`work work0${idx + 1}`}
-                onClick={() => openModal(project)}
-              >
-                {project.title}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="inner">
+        <ul className="works">
+          {projects.map((project, idx) => (
+            <li
+              key={project.id}
+              className={`work work0${idx + 1}`}
+              onClick={() => openModal(project)}
+            >
+              {project.title}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <Modal
         isOpen={isModalOpen}
