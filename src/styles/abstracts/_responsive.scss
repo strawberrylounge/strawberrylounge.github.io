@@ -1,10 +1,8 @@
-// Max Width Size
-$screen-full: 2559px;
-// Media Query Size
-$screen-desktop: 1919px;
-$screen-tablet: 1023px;
-$screen-mobile: 767px;
+@use "./variables" as *;
 
+/* =============================================================
+	기본
+============================================================= */
 @mixin mobile {
   @media (max-width:#{$screen-mobile}) {
     @content;
@@ -16,26 +14,35 @@ $screen-mobile: 767px;
   }
 }
 @mixin desktop {
+  @media (min-width:#{$screen-tablet + 1px}) {
+    @content;
+  }
+}
+
+/* =============================================================
+	복합 범위
+============================================================= */
+// 일반 PC 사이즈 전용 대응
+@mixin pc {
   @media (min-width:#{$screen-tablet + 1px}) and (max-width:#{$screen-full}) {
     @content;
   }
 }
+// 와이드 전용 대응
 @mixin full {
   @media (min-width:#{$screen-full + 1px}) {
     @content;
   }
 }
-
-// 클래스
-.m-only {
-  display: none;
-  @include mobile {
-    display: block;
+// 모바일 + 태블릿 (PC 제외)
+@mixin mobile-tablet {
+  @media (max-width: #{$screen-tablet}) {
+    @content;
   }
 }
-.pc-only {
-  display: block;
-  @include mobile {
-    display: none;
+// 태블릿 + PC (모바일 제외)
+@mixin tablet-up {
+  @media (min-width: #{$screen-mobile + 1px}) {
+    @content;
   }
 }

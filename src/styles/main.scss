@@ -1,9 +1,13 @@
+/* import helpers */
+@use "./abstracts";
+
+/* import reset */
 @use "./base/reset";
 @use "./base/typography";
+@use "./base/utilities";
 
-@use "./abstracts/a11y";
-@use "./abstracts/animation";
-@use "./abstracts/responsive";
-@use "./abstracts/variables";
+/* import components */
 
-@use "./components/common";
+/* import layouts */
+
+/* import pages */

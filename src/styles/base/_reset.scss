@@ -92,7 +92,8 @@
   mark,
   audio,
   button,
-  video {
+  video,
+  dialog {
     margin: 0;
     padding: 0;
     border: 0;
@@ -114,11 +115,9 @@
   */
   html,
   body {
-    height: 100%;
+    height: auto;
     min-height: 100%;
     font-display: optional;
-    font-weight: 400;
-    font-size: 16px;
     line-height: 1.15; /* 1 */
     letter-spacing: -0.025em;
     -webkit-text-size-adjust: 100%; /* 2 */
@@ -382,6 +381,7 @@
   input {
     /* 1 */
     overflow: visible;
+    outline: unset; // CAUTION!!
   }
 
   /**
@@ -404,7 +404,7 @@
     -webkit-appearance: button;
     vertical-align: middle;
     border: none;
-    outline: none; // CAUTION!!
+    // outline: none; // CAUTION!!
     background: none;
     cursor: pointer;
   }
@@ -423,9 +423,11 @@
   /**
   * Correct the padding in Firefox.
   */
-  fieldset {
-    padding: 0.35em 0.75em 0.625em;
-    border: none;
+  @-moz-document url-prefix() {
+    fieldset {
+      padding: 0.35em 0.75em 0.625em;
+      border: none;
+    }
   }
 
   /**
@@ -436,7 +438,7 @@
   * 4. Reset
   */
   legend {
-    display: none;
+    // display: none;
     box-sizing: border-box; /* 1 */
     color: inherit; /* 2 */
     max-width: 100%; /* 1 */
@@ -534,6 +536,21 @@
   */
   [hidden] {
     display: none;
+  }
+
+  /**
+  * Dialog reset
+  */
+  dialog {
+    inset-inline-start: auto;
+  }
+
+  /**
+  * Prevent pseudo-element click
+  */
+  ::before,
+  ::after {
+    pointer-events: none;
   }
 
   /**

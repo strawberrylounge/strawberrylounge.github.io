@@ -1,15 +1,27 @@
-@use "sass:list";
-@use "sass:map";
+/* =============================================================
+	Layout
+============================================================= */
+// max width size
+$inner-width: 1200px;
+$inner-width-mobile: 580px;
 
-@forward "./responsive";
-@forward "../base/typography";
+// media query size
+$screen-full: 2559px;
+$screen-desktop: 1919px;
+$screen-tablet: 1023px;
+$screen-mobile: 699px;
+
+// spacing
+$spacing: 20px;
+$spacing-mobile: 16px;
 
 /* =============================================================
 	Themes, Colors
 ============================================================= */
 $colors: (
-  white: #fff,
-  black: #000,
+  "white": #fff,
+  "black": #000,
+
   gray900: #121212,
   gray800: #333333,
   gray700: #444444,
@@ -21,18 +33,50 @@ $colors: (
   gray150: #dddddd,
   gray100: #ebebeb,
   gray50: #f5f5f5,
-  deepblue: #0b0b1d,
-  starlight: #e0e7ff,
-  cosmic-blue: #4d9de0,
-  nebula-gray: #7b7b8a,
-  mars-red: #e15b5b,
-  saturn-gold: #f2d377,
-  supernova: #ff1e8c,
+
+  "deepblue": #0b0b1d,
+  "starlight": #e0e7ff,
+  "cosmic-blue": #4d9de0,
+  "nebula-gray": #7b7b8a,
+  "mars-red": #e15b5b,
+  "saturn-gold": #f2d377,
+  "supernova": #ff1e8c,
 );
 
-@function color($name) {
-  @return map.get($colors, $name);
-}
+// colors
+$text-color: #121212 !default;
+
+/* =============================================================
+	Font
+============================================================= */
+$font-family-base: "Noto Sans KR", sans-serif !default;
+$font-weight: (
+  "regular": 400,
+  "bold": 700,
+  "black": 900,
+);
+$font-size: (
+  head-l: 48px,
+  head: 40px,
+  head-s: 32px,
+
+  title-l: 28px,
+  title: 24px,
+  title-s: 22px,
+
+  body-xl: 20px,
+  body-l: 18px,
+  body: 16px,
+  body-s: 15px,
+  body-xs: 14px,
+  body-xxs: 12px,
+  body-xxxs: 11px,
+);
+
+$letter-spacing: -0.5px !default;
+$letter-spacing-mobile: -0.5px !default;
+
+$line-height: 160% !default;
 
 /* =============================================================
 	Path
@@ -40,91 +84,3 @@ $colors: (
 // img path
 $url: "http://example.com/";
 $img: $url + "images/";
-$img-icons: $img + "icons/";
-
-/* =============================================================
-	Layout
-============================================================= */
-// flex
-@mixin flexbox($justify-content: flex-start, $align-items: center) {
-  display: flex;
-  justify-content: $justify-content;
-  align-items: $align-items;
-}
-
-// generate padding and margin classes
-@function size($start, $end) {
-  $size: ();
-  @for $i from $start through $end {
-    $value: $i + 0;
-    $size: list.append($size, $value);
-  }
-  @return $size;
-}
-@function get-px($value) {
-  @if $value == 0 {
-    @return $value;
-  } @else {
-    @return $value + 0px;
-  }
-}
-
-$size: size(0, 100);
-$position: (
-  "l": "left",
-  "r": "right",
-  "t": "top",
-  "b": "bottom",
-);
-$name-map: (
-  "m": "margin",
-  "p": "padding",
-);
-
-@mixin generate($name-map: (), $position: (), $size: ()) {
-  @each $pre-key, $pre-value in $name-map {
-    @each $px in $size {
-      .#{$pre-key}#{$px} {
-        #{$pre-value}: get-px($px);
-      }
-      @each $suf-key, $suf-value in $position {
-        .#{$pre-key}#{$suf-key}-#{$px} {
-          #{$pre-value}-#{$suf-value}: get-px($px) !important;
-        }
-      }
-    }
-  }
-}
-@include generate($name-map, $position, $size);
-
-/* =============================================================
-	Etc
-============================================================= */
-// vendor prefix
-@mixin prefix($property, $value, $prefixes: ()) {
-  @each $prefix in $prefixes {
-    #{'-' + $prefix + '-' + $property}: $value;
-  }
-
-  #{$property}: $value;
-}
-
-// calculate px to rem
-@function rem($value) {
-  $rem-value: calc($value / 16) + rem;
-  @return $rem-value;
-}
-
-// text-ellipsis
-@mixin text-ellipsis($width, $hover-visible: false) {
-  width: $width;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @if $hover-visible {
-    &:hover {
-      overflow: visible;
-    }
-  }
-}
