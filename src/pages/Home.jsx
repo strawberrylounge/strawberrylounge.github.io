@@ -518,7 +518,7 @@ function Home() {
         onClose={closeModal}
         projectData={selectedProject}
       >
-        {selectedProject?.content}
+        {selectedProject?.Content && <selectedProject.Content />}
       </Modal>
     </div>
   );

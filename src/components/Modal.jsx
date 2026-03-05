@@ -62,8 +62,8 @@ function Modal({ isOpen, onClose, projectData, children }) {
 
       // 프론트엔드 스크립트
       React: "script",
-      javaScript: "script",
-      typeScript: "script",
+      JavaScript: "script",
+      TypeScript: "script",
       "Next.js": "script",
       "Vue.js": "script",
       Angular: "script",
