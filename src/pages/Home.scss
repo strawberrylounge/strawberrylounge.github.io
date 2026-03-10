@@ -5,352 +5,354 @@ body.page-home {
   height: auto;
 }
 
-.wrap {
-  section.section {
-    @include flexbox(center);
-    min-height: 920px;
-    color: white;
-    text-align: center;
-    @include mobile {
-      min-height: 600px;
-    }
-    &.section01,
-    &.section02 {
-      .inner {
-        z-index: 2;
-        position: relative;
-        h2.section-title {
-          font-weight: 900;
-          font-size: rem(72);
-          color: color("white");
-          letter-spacing: 0.5px;
-          text-shadow:
-            0 0 20px rgba(255, 255, 255, 0.3),
-            0 0 40px rgba(255, 255, 255, 0.15),
-            0 0 60px rgba(255, 255, 255, 0.05);
-          @include mobile {
-            font-size: rem(32);
-          }
-        }
-        p.section-contents-text {
-          margin-top: 32px;
-          font-weight: 400;
-          font-size: rem(22);
-          color: color(gray300);
-          text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-          line-height: 1.6;
-          word-break: keep-all;
-          @include mobile {
-            margin-top: 16px;
-            font-size: rem(14);
-          }
-        }
+.page-home {
+  .wrap {
+    section.section {
+      @include flexbox(center);
+      min-height: 920px;
+      color: white;
+      text-align: center;
+      @include mobile {
+        min-height: 600px;
       }
-    }
-    &.section01 {
-      position: relative;
-      .astronaut {
-        z-index: 1;
-        position: absolute;
-        left: 15%;
-        bottom: 56px;
-        animation: float 6s ease-in-out infinite;
-      }
-      .inner {
-        h2.section-title {
-          .typing-text {
-            display: inline-block;
-          }
-          .cursor {
-            display: inline-block;
-            margin-left: 2px;
+      &.section01,
+      &.section02 {
+        .inner {
+          z-index: 2;
+          position: relative;
+          h2.section-title {
+            font-weight: 900;
+            font-size: rem(72);
             color: color("white");
-            animation: blink 1s infinite;
+            letter-spacing: 0.5px;
+            text-shadow:
+              0 0 20px rgba(255, 255, 255, 0.3),
+              0 0 40px rgba(255, 255, 255, 0.15),
+              0 0 60px rgba(255, 255, 255, 0.05);
             @include mobile {
-              display: none;
+              font-size: rem(32);
             }
           }
-        }
-        p.section-contents-text {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: all 0.8s ease;
-          &.show {
-            opacity: 1;
-            transform: translateY(0);
+          p.section-contents-text {
+            margin-top: 32px;
+            font-weight: 400;
+            font-size: rem(22);
+            color: color(gray300);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+            word-break: keep-all;
+            @include mobile {
+              margin-top: 16px;
+              font-size: rem(14);
+            }
           }
         }
       }
-    }
-    &.section02 {
-      .inner {
-        h2.section-title {
-          display: inline-block;
-          .flip-container {
-            position: relative;
-            display: inline-block;
-            min-width: 420px;
-            height: 120px;
-            vertical-align: bottom;
-            overflow: hidden;
-            @include mobile {
-              min-width: 180px;
-              height: 50px;
-            }
-            .flip-words {
-              position: relative;
-              height: 100%;
-
-              .flip-word {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                font-weight: 900;
-                font-size: rem(72);
-                color: color(saturn-gold);
-                transform: translate(-50%, 100%);
-                opacity: 0;
-                transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                @include mobile {
-                  font-size: rem(32);
-                }
-                &.active {
-                  transform: translate(-50%, 0);
-                  opacity: 1;
-                  text-shadow:
-                    0 0 5px rgba(242, 211, 119, 0.5),
-                    0 0 10px rgba(242, 211, 119, 0.5),
-                    0 0 15px rgba(242, 211, 119, 0.3);
-                  @include mobile {
-                    text-shadow:
-                      0 0 2px rgba(242, 211, 119, 0.5),
-                      0 0 5px rgba(242, 211, 119, 0.5),
-                      0 0 10px rgba(242, 211, 119, 0.3);
-                  }
-                }
-                &:not(.active) {
-                  animation: slideOut 0.6s ease-in-out;
-                }
-              }
-            }
-          }
-          span:last-child {
-            margin-top: -4px;
-          }
+      &.section01 {
+        position: relative;
+        .astronaut {
+          z-index: 1;
+          position: absolute;
+          left: 15%;
+          bottom: 56px;
+          animation: float 6s ease-in-out infinite;
         }
-      }
-    }
-    &.section03 {
-      position: relative;
-      .inner {
-        @include mobile {
-          width: 100%;
-        }
-        .works {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-          @include mobile {
-            display: block;
-            width: 100%;
-          }
-          .work {
-            @include flexbox(center);
-            width: 400px;
-            height: 400px;
-            background: color(gray50);
-            cursor: pointer;
-            @include mobile {
-              width: 100%;
+        .inner {
+          h2.section-title {
+            .typing-text {
+              display: inline-block;
             }
-            // 임시
-            &:not(:first-child) {
+            .cursor {
+              display: inline-block;
+              margin-left: 2px;
+              color: color("white");
+              animation: blink 1s infinite;
               @include mobile {
                 display: none;
               }
             }
           }
-        }
-        .btn-more {
-          margin-top: 16px;
-          color: color("saturn-gold");
-          // text-decoration: underline;
+          p.section-contents-text {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            &.show {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
         }
       }
-    }
-    &.section04 {
-      position: relative;
-      .inner {
-        width: 100%;
-        &.pc-only {
-          display: block;
+      &.section02 {
+        .inner {
+          h2.section-title {
+            display: inline-block;
+            .flip-container {
+              position: relative;
+              display: inline-block;
+              min-width: 420px;
+              height: 120px;
+              vertical-align: bottom;
+              overflow: hidden;
+              @include mobile {
+                min-width: 180px;
+                height: 50px;
+              }
+              .flip-words {
+                position: relative;
+                height: 100%;
+
+                .flip-word {
+                  position: absolute;
+                  top: 0;
+                  left: 50%;
+                  font-weight: 900;
+                  font-size: rem(72);
+                  color: color(saturn-gold);
+                  transform: translate(-50%, 100%);
+                  opacity: 0;
+                  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                  @include mobile {
+                    font-size: rem(32);
+                  }
+                  &.active {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                    text-shadow:
+                      0 0 5px rgba(242, 211, 119, 0.5),
+                      0 0 10px rgba(242, 211, 119, 0.5),
+                      0 0 15px rgba(242, 211, 119, 0.3);
+                    @include mobile {
+                      text-shadow:
+                        0 0 2px rgba(242, 211, 119, 0.5),
+                        0 0 5px rgba(242, 211, 119, 0.5),
+                        0 0 10px rgba(242, 211, 119, 0.3);
+                    }
+                  }
+                  &:not(.active) {
+                    animation: slideOut 0.6s ease-in-out;
+                  }
+                }
+              }
+            }
+            span:last-child {
+              margin-top: -4px;
+            }
+          }
+        }
+      }
+      &.section03 {
+        position: relative;
+        .inner {
           @include mobile {
-            display: none;
-          }
-          .rocket-wrap {
-            .rocket-path {
-              width: 1000px;
-              height: 1400px;
-              fill: #fff;
-            }
-            .rocket {
-              position: absolute;
-              z-index: 10;
-              width: 150px;
-              height: 150px;
-            }
-          }
-          .career-wrap {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            @include flexbox();
-            flex-direction: column;
-            gap: 68px;
             width: 100%;
-            max-width: 1150px;
-            text-align: left;
-            transform: translateX(-50%);
-            .career {
-              @include flexbox();
-              gap: 24px;
-              &:nth-child(odd) {
-                flex-flow: row-reverse;
-                align-self: flex-start;
+          }
+          .works {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            @include mobile {
+              display: block;
+              width: 100%;
+            }
+            .work {
+              @include flexbox(center);
+              width: 400px;
+              height: 400px;
+              background: color(gray50);
+              cursor: pointer;
+              @include mobile {
+                width: 100%;
               }
-              &:nth-child(even) {
-                align-self: flex-end;
-              }
-              .career-info {
-                @include flexbox(flex-start, flex-start);
-                flex-direction: column;
-                gap: 6px;
-                .period {
-                  font-size: rem(12);
-                  color: color("cosmic-blue");
-                  letter-spacing: 0.5px;
-                }
-                .company {
-                  font-weight: 700;
-                  font-size: rem(22);
-                  color: color("starlight");
-                  // line-height: 1.3;
-                }
-                .role {
-                  display: block;
-                  margin-top: -8px;
-                  font-weight: 400;
-                  font-size: rem(15);
-                  color: color(saturn-gold);
-                }
-                .description {
-                  .description-list {
-                    @include flexbox(flex-start, flex-start);
-                    flex-direction: column;
-                    gap: 6px;
-                    li {
-                      position: relative;
-                      padding-left: 12px;
-                      font-size: rem(13);
-                      color: color("nebula-gray");
-                      line-height: 1.5;
-                      &::before {
-                        content: "•";
-                        position: absolute;
-                        left: 0;
-                        color: color("cosmic-blue");
-                      }
-                    }
-                  }
+              // 임시
+              &:not(:first-child) {
+                @include mobile {
+                  display: none;
                 }
               }
             }
           }
-        }
-        &.m-only {
-          padding: {
-            top: 36px;
-            left: 16px;
-            bottom: 36px;
-          }
-          .career-wrap {
-            @include flexbox(flex-start, flex-start);
-            flex-direction: column;
-            gap: 24px;
-            padding-left: 16px;
-            border-left: 1px dashed color("nebula-gray");
-            text-align: left;
-            .career {
-              .career-info {
-                .period {
-                  font-size: rem(12);
-                  color: color("cosmic-blue");
-                }
-                .company {
-                  font-weight: 700;
-                  font-size: rem(18);
-                  color: color("starlight");
-                }
-                .role {
-                  font-weight: 400;
-                  font-size: rem(14);
-                  color: color(saturn-gold);
-                }
-                .description {
-                  .description-list {
-                    li {
-                      position: relative;
-                      padding-left: 12px;
-                      font-size: rem(14);
-                      color: color("nebula-gray");
-                      &::before {
-                        content: "•";
-                        position: absolute;
-                        left: 0;
-                        color: color("cosmic-blue");
-                      }
-                    }
-                  }
-                }
-              }
-            }
+          .btn-more {
+            margin-top: 16px;
+            color: color("saturn-gold");
+            // text-decoration: underline;
           }
         }
       }
-    }
-    &.section05 {
-      @include mobile {
-        padding: 60px 0;
-      }
-      .inner {
-        width: 100%;
-        h2 {
-          padding-bottom: 36px;
-          font-weight: 900;
-          font-size: rem(36);
-          color: color("white");
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-        .contact {
+      &.section04 {
+        position: relative;
+        .inner {
           width: 100%;
-          max-width: 980px;
-          min-height: 420px;
-          margin: 0 auto;
-          padding: 36px 28px;
-          border-radius: 8px;
-          background: rgba(color("nebula-gray"), $alpha: 0.65);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-          @include mobile {
-            width: 100%;
-            padding: 16px;
-            border-radius: 4px;
+          &.pc-only {
+            display: block;
+            @include mobile {
+              display: none;
+            }
+            .rocket-wrap {
+              .rocket-path {
+                width: 1000px;
+                height: 1400px;
+                fill: #fff;
+              }
+              .rocket {
+                position: absolute;
+                z-index: 10;
+                width: 150px;
+                height: 150px;
+              }
+            }
+            .career-wrap {
+              position: absolute;
+              top: 0;
+              left: 50%;
+              @include flexbox();
+              flex-direction: column;
+              gap: 68px;
+              width: 100%;
+              max-width: 1150px;
+              text-align: left;
+              transform: translateX(-50%);
+              .career {
+                @include flexbox();
+                gap: 24px;
+                &:nth-child(odd) {
+                  flex-flow: row-reverse;
+                  align-self: flex-start;
+                }
+                &:nth-child(even) {
+                  align-self: flex-end;
+                }
+                .career-info {
+                  @include flexbox(flex-start, flex-start);
+                  flex-direction: column;
+                  gap: 6px;
+                  .period {
+                    font-size: rem(12);
+                    color: color("cosmic-blue");
+                    letter-spacing: 0.5px;
+                  }
+                  .company {
+                    font-weight: 700;
+                    font-size: rem(22);
+                    color: color("starlight");
+                    // line-height: 1.3;
+                  }
+                  .role {
+                    display: block;
+                    margin-top: -8px;
+                    font-weight: 400;
+                    font-size: rem(15);
+                    color: color(saturn-gold);
+                  }
+                  .description {
+                    .description-list {
+                      @include flexbox(flex-start, flex-start);
+                      flex-direction: column;
+                      gap: 6px;
+                      li {
+                        position: relative;
+                        padding-left: 12px;
+                        font-size: rem(13);
+                        color: color("nebula-gray");
+                        line-height: 1.5;
+                        &::before {
+                          content: "•";
+                          position: absolute;
+                          left: 0;
+                          color: color("cosmic-blue");
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
-          .contact-sns {
-            @include flexbox(center);
-            gap: 12px;
-            .sns-link {
-              color: color(gray100);
+          &.m-only {
+            padding: {
+              top: 36px;
+              left: 16px;
+              bottom: 36px;
+            }
+            .career-wrap {
+              @include flexbox(flex-start, flex-start);
+              flex-direction: column;
+              gap: 24px;
+              padding-left: 16px;
+              border-left: 1px dashed color("nebula-gray");
+              text-align: left;
+              .career {
+                .career-info {
+                  .period {
+                    font-size: rem(12);
+                    color: color("cosmic-blue");
+                  }
+                  .company {
+                    font-weight: 700;
+                    font-size: rem(18);
+                    color: color("starlight");
+                  }
+                  .role {
+                    font-weight: 400;
+                    font-size: rem(14);
+                    color: color(saturn-gold);
+                  }
+                  .description {
+                    .description-list {
+                      li {
+                        position: relative;
+                        padding-left: 12px;
+                        font-size: rem(14);
+                        color: color("nebula-gray");
+                        &::before {
+                          content: "•";
+                          position: absolute;
+                          left: 0;
+                          color: color("cosmic-blue");
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      &.section05 {
+        @include mobile {
+          padding: 60px 0;
+        }
+        .inner {
+          width: 100%;
+          h2 {
+            padding-bottom: 36px;
+            font-weight: 900;
+            font-size: rem(36);
+            color: color("white");
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+          .contact {
+            width: 100%;
+            max-width: 980px;
+            min-height: 420px;
+            margin: 0 auto;
+            padding: 36px 28px;
+            border-radius: 8px;
+            background: rgba(color("nebula-gray"), $alpha: 0.65);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            @include mobile {
+              width: 100%;
+              padding: 16px;
+              border-radius: 4px;
+            }
+            .contact-sns {
+              @include flexbox(center);
+              gap: 12px;
+              .sns-link {
+                color: color(gray100);
+              }
             }
           }
         }
