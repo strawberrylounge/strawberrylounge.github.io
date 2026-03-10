@@ -33,6 +33,16 @@ function Home() {
 
   const pathRef = useRef(null);
 
+  // body 클래스 설정
+  useEffect(() => {
+    document.documentElement.classList.add("page-home");
+    document.body.classList.add("page-home");
+    return () => {
+      document.documentElement.classList.remove("page-home");
+      document.body.classList.remove("page-home");
+    };
+  }, []);
+
   // Navigation 클릭 시 스크롤
   useEffect(() => {
     const handleScroll = () => {

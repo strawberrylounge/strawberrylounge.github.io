@@ -13,12 +13,20 @@ const Project03 = () => (
         <li>마크업(jsp) 및 스타일(SCSS) 관련 디렉토리 구조 설계</li>
         <li>정적 리소스 관리 방식 및 관련 컨벤션 설정</li>
         <li>마크업 및 스타일링 전반 담당</li>
-        <li>UI 관련 스크립트 작성(jQuery) 및 일부 데이터 바인딩(ajax?)</li>
+        <li>UI 관련 스크립트 작성(jQuery)</li>
       </ul>
     </section>
 
     <section>
-      <h3>🌱 새롭게 익힌 것</h3>
+      <h3>설명?</h3>
+      <ul>
+        <li>뭘 신경썼고</li>
+        <li>어떻게 했으며</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>🌱 새롭게 익힌 것 or 적응한? 것?</h3>
       <ul>
         <li>
           <h4>microsite 내 스타일/파일 분리</h4>
@@ -54,8 +62,26 @@ const Project03 = () => (
     <section>
       <h3>🪨 이슈 & 해결</h3>
       <ul>
-        <li>scss 컴파일 문제 / dart sass와 node sass 버전 차이 문제</li>
-        <li>그래프 svg + transform</li>
+        <li>
+          <h4>
+            scss 컴파일 문제 / dart sass와 node sass의 차이에 따른 기존 문법
+            사용 방식 문제
+          </h4>
+          <p>
+            interpolation 등등 . . . 이게 이슈 해결이 맞나? 암튼 최신형인
+            dartjs로 옮기고 deprecated되는 문법제거후 sass 모듈/보간법/함수 분리
+          </p>
+        </li>
+        <li>
+          <h4>그래프 svg + transform</h4>
+          <p>
+            도넛이 반 잘린 형태의 progress 그래프라 svg 구현이 가장 낫다고 판단
+            (왜그렇게생각했더라) 그런데 jsp 환경이라 어쩌구저쩌구 그래서 svg의
+            lineargradient 속성을 이용해서 gradient 표현 후 jsp param을 이용해서
+            분리하고 css 변수 값 받아서 path에 css transform으로 rotate
+            하는방식으로 구현 했다고 어쩌고저쩌고 아 집 에 가 고 싶 다
+          </p>
+        </li>
       </ul>
     </section>
 

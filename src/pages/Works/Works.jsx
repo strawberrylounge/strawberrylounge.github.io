@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Modal from "../../components/Modal";
 import { projects } from "../../data/projects";
@@ -7,6 +7,15 @@ import "./Works.scss";
 
 function Works() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.classList.add("page-works");
+    document.body.classList.add("page-works");
+    return () => {
+      document.documentElement.classList.remove("page-works");
+      document.body.classList.remove("page-works");
+    };
+  }, []);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const openModal = (project) => {
