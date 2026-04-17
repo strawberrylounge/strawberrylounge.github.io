@@ -9,17 +9,20 @@ body.page-home {
   .wrap {
     section.section {
       @include flexbox(center);
-      min-height: 920px;
+      min-height: 100vh;
       color: white;
       text-align: center;
-      @include mobile {
-        min-height: 600px;
+      .inner {
+        @include flexbox(center, center);
+        flex-direction: column;
       }
+
       &.section01,
       &.section02 {
         .inner {
           z-index: 2;
           position: relative;
+
           h2.section-title {
             font-weight: 900;
             font-size: rem(72);
@@ -189,6 +192,7 @@ body.page-home {
               display: none;
             }
             .rocket-wrap {
+              position: relative;
               .rocket-path {
                 width: 1000px;
                 height: 1400px;
@@ -269,10 +273,14 @@ body.page-home {
             }
           }
           &.m-only {
+            display: none;
             padding: {
               top: 36px;
               left: 16px;
               bottom: 36px;
+            }
+            @include mobile {
+              display: block;
             }
             .career-wrap {
               @include flexbox(flex-start, flex-start);

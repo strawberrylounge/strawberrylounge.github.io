@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import gsap from "gsap";
@@ -10,7 +10,6 @@ import Modal from "../components/Modal";
 import Form from "../components/Form";
 import { RocketPath } from "../components/Graphics/RocketPath";
 import { Rocket } from "../components/Graphics/Rocket";
-import { RocketPathMobile } from "../components/Graphics/RocketPathMobile";
 import Planet from "../components/Graphics/Planet";
 import { Astronaut } from "../components/Graphics/Astronaut";
 import IconGithub from "../components/Icons/IconGithub";
@@ -29,12 +28,11 @@ function Home() {
   const [showDescription, setShowDescription] = useState(false);
   const [flipWords] = useState(["Designer's", "Creative", "Technical"]);
   const [currentFlipIndex, setCurrentFlipIndex] = useState(0);
-  // const [animationsComplete, setAnimationsComplete] = useState(false);
 
   const pathRef = useRef(null);
 
-  // body 클래스 설정
-  useEffect(() => {
+  // body 클래스 설정 (useGSAP보다 먼저 실행되도록 useLayoutEffect 사용)
+  useLayoutEffect(() => {
     document.documentElement.classList.add("page-home");
     document.body.classList.add("page-home");
     return () => {
@@ -79,7 +77,6 @@ function Home() {
         // 타이핑 완료 후 설명 텍스트 표시
         setTimeout(() => {
           setShowDescription(true);
-          // setAnimationsComplete(true);
         }, 500);
       }
     }, 100); // 타이핑 속도 조절
@@ -114,6 +111,7 @@ function Home() {
       });
       // 로켓 애니메이션
       gsap.to(".rocket", {
+        immediateRender: false,
         motionPath: {
           path: pathRef.current,
           align: pathRef.current,
@@ -156,55 +154,18 @@ function Home() {
                   y: 0,
                   duration: 0.3,
                   ease: "power2.out",
-                  immediateRender: false, // 즉시 렌더링 방지
-                  overwrite: true, // 중복 애니메이션 덮어쓰기
+                  immediateRender: false,
+                  overwrite: true,
                 });
               }
             });
           },
           ease: "none",
           duration: 10,
-          immediateRender: false,
           refreshPriority: -1,
           markers: false,
         },
       });
-      // 모바일용 // Progress bar 초기 설정
-      // gsap.set(".timeline-progress", {
-      //   strokeDashoffset: "100%",
-      // });
-      // Progress bar 애니메이션
-      // gsap.to(".timeline-progress", {
-      //   strokeDashoffset: "0%",
-      //   scrollTrigger: {
-      //     trigger: ".section04 .inner.m-only",
-      //     start: "top 30%",
-      //     end: "bottom 70%",
-      //     scrub: true,
-      //     onUpdate: (self) => {
-      //       // 진행률에 따라 career 요소들 순차 표시
-      //       const progress = self.progress;
-      //       const careerElements = document.querySelectorAll(".career");
-
-      //       careerElements.forEach((career, index) => {
-      //         const showAt = (index / careerElements.length) * 0.7;
-      //         if (progress >= showAt && career.style.opacity !== "1") {
-      //           gsap.to(career, {
-      //             opacity: 1,
-      //             scale: 1,
-      //             y: 0,
-      //             duration: 0.3,
-      //             ease: "power2.out",
-      //             immediateRender: false,
-      //             overwrite: true,
-      //           });
-      //         }
-      //       });
-      //     },
-      //     ease: "none",
-      //     markers: false,
-      //   },
-      // });
     }
   }, [pathRef]);
 
