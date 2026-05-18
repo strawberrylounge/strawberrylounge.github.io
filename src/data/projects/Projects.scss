@@ -1,0 +1,55 @@
+@use "../../styles/abstracts/index" as *;
+
+.project-details {
+  section {
+    &:not(:last-child) {
+      padding-bottom: 30px;
+    }
+
+    // heading
+    h4 {
+      padding-bottom: 12px;
+      font-weight: font-weight("bold");
+      font-size: rem(18);
+    }
+    h5 {
+      font-weight: font-weight("bold");
+      color: color(gray700);
+    }
+
+    ul > li,
+    p {
+      color: color(gray700);
+    }
+
+    // 리스트 기본
+    ul {
+      @include flexbox(flex-start, flex-start);
+      flex-direction: column;
+      gap: 6px;
+      li {
+        position: relative;
+        padding-left: 12px;
+        &::before {
+          content: "•";
+          position: absolute;
+          left: 0;
+          color: color("supernova");
+        }
+        h5 {
+          padding-bottom: 8px;
+        }
+      }
+    }
+
+    &:nth-child(2n) {
+      ul {
+        li {
+          &::before {
+            color: color("saturn-gold");
+          }
+        }
+      }
+    }
+  }
+}

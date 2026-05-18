@@ -7,6 +7,8 @@ import Project01 from "./contents/Project01";
 import Project02 from "./contents/Project02";
 import Project03 from "./contents/Project03";
 
+import "./Projects.scss";
+
 export const projects = [
   {
     id: "project01",

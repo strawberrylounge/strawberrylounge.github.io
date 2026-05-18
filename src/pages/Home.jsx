@@ -111,7 +111,6 @@ function Home() {
       });
       // 로켓 애니메이션
       gsap.to(".rocket", {
-        immediateRender: false,
         motionPath: {
           path: pathRef.current,
           align: pathRef.current,
