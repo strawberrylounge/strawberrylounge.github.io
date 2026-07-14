@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import IconClose from "./Icons/IconClose";
+import IconLock from "./Icons/IconLock";
 
 import "./Modal.scss";
 
@@ -132,6 +133,29 @@ function Modal({ isOpen, onClose, projectData, children }) {
                 </div>
               )}
             </div>
+            {/* 링크 영역 (있을 때만) */}
+            {links && (
+              <div className="modal-links">
+                {links.map((link, idx) => (
+                  <a
+                    key={idx}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="modal-link"
+                  >
+                    {link.label}
+                    {link.private && (
+                      <IconLock
+                        size={14}
+                        color="#999"
+                        aria-label="외부 공유 불가"
+                      />
+                    )}
+                  </a>
+                ))}
+              </div>
+            )}
             {techStack && (
               <div className="tech-stack">
                 {techStack.map((tech) => (
@@ -155,22 +179,6 @@ function Modal({ isOpen, onClose, projectData, children }) {
 
           {/* 자유 콘텐츠 영역 */}
           <div className="modal-description">{children}</div>
-
-          {/* 링크 영역 (있을 때만) */}
-          {links && (
-            <div className="modal-links">
-              {links.map((link, idx) => (
-                <a
-                  key={idx}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          )}
         </div>
       </div>
     </div>

@@ -54,13 +54,13 @@
       }
     }
     .modal-body {
-      padding: 16px 24px;
+      padding: 16px 24px 48px;
       .modal-info {
         .info-grid {
           display: flex;
           flex-direction: column;
           gap: 4px;
-          padding-bottom: 24px;
+          padding-bottom: 12px;
           .info {
             @include flexbox(flex-start);
             gap: 8px;
@@ -68,6 +68,20 @@
             & > span {
               font-weight: 700;
               color: color(gray900);
+            }
+          }
+        }
+        .modal-links {
+          @include flexbox(flex-start);
+          gap: 12px;
+          padding-bottom: 24px;
+          .modal-link {
+            @include flexbox(flex-start);
+            gap: 4px;
+            color: color(gray400);
+            // font-weight: 700;
+            &:hover {
+              text-decoration: underline;
             }
           }
         }

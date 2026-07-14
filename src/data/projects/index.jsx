@@ -36,7 +36,13 @@ export const projects = [
     techStack: ["jsp", "SCSS", "JavaScript", "jQuery", "Figma", "gitlab"],
     summary: "푸르넷 예비교사 대상 온라인 학습 사이트 개발",
     Content: Project03,
-    link: "https://sam.epurunet.co.kr/online",
+    links: [
+      {
+        label: "사이트 보기",
+        url: "https://sam.epurunet.co.kr/online",
+        private: true,
+      },
+    ],
   },
 ];
 

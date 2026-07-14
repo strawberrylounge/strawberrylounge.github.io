@@ -3,23 +3,30 @@
 .project-details {
   section {
     &:not(:last-child) {
-      padding-bottom: 30px;
+      padding-bottom: 60px;
     }
 
     // heading
     h4 {
       padding-bottom: 12px;
       font-weight: font-weight("bold");
-      font-size: rem(18);
+      font-size: rem(24);
     }
     h5 {
       font-weight: font-weight("bold");
+      font-size: rem(18);
       color: color(gray700);
     }
 
     ul > li,
     p {
       color: color(gray700);
+    }
+
+    sub {
+      bottom: 0;
+      display: block;
+      line-height: 120%;
     }
 
     // 리스트 기본
@@ -29,6 +36,9 @@
       gap: 6px;
       li {
         position: relative;
+        @include flexbox(flex-start, flex-start);
+        flex-direction: column;
+        gap: 12px;
         padding-left: 12px;
         &::before {
           content: "•";
@@ -40,6 +50,10 @@
           padding-bottom: 8px;
         }
       }
+    }
+
+    ul.description-list {
+      gap: 18px;
     }
 
     &:nth-child(2n) {
