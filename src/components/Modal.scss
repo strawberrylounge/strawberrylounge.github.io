@@ -72,14 +72,14 @@
           }
         }
         .modal-links {
-          @include flexbox(flex-start);
+          @include flexbox(flex-end);
           gap: 12px;
           padding-bottom: 24px;
           .modal-link {
             @include flexbox(flex-start);
             gap: 4px;
-            color: color(gray400);
-            // font-weight: 700;
+            font-size: rem(14);
+            color: color(gray500);
             &:hover {
               text-decoration: underline;
             }

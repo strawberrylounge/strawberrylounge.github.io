@@ -135,26 +135,28 @@ function Modal({ isOpen, onClose, projectData, children }) {
             </div>
             {/* 링크 영역 (있을 때만) */}
             {links && (
-              <div className="modal-links">
+              <ul className="modal-links">
                 {links.map((link, idx) => (
-                  <a
-                    key={idx}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="modal-link"
-                  >
-                    {link.label}
-                    {link.private && (
-                      <IconLock
-                        size={14}
-                        color="#999"
-                        aria-label="외부 공유 불가"
-                      />
-                    )}
-                  </a>
+                  <li>
+                    <a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="modal-link"
+                    >
+                      {link.label}
+                      {link.private && (
+                        <IconLock
+                          size={14}
+                          color="#999"
+                          aria-label="외부 공유 불가"
+                        />
+                      )}
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
             {techStack && (
               <div className="tech-stack">

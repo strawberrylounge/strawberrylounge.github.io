@@ -38,9 +38,14 @@ export const projects = [
     Content: Project03,
     links: [
       {
-        label: "사이트 보기",
+        label: "사이트",
         url: "https://sam.epurunet.co.kr/online",
         private: true,
+      },
+      {
+        label: "목업 페이지",
+        url: "https://strawberrylounge.github.io/online/main.html",
+        private: false,
       },
     ],
   },
