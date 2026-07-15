@@ -144,6 +144,7 @@ body.page-home {
           }
         }
       }
+      // works
       &.section03 {
         position: relative;
         .inner {
@@ -167,6 +168,46 @@ body.page-home {
               @include mobile {
                 width: 100%;
               }
+              &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba($color: color("black"), $alpha: 0.8);
+                opacity: 0;
+                transition: all 0.3s ease;
+              }
+              .work-title {
+                z-index: 1;
+                font-weight: font-weight("bold");
+                color: color("white");
+                opacity: 0;
+                transition: all 0.3s ease;
+              }
+
+              // hover 시
+              &:hover {
+                position: relative;
+                &::after {
+                  opacity: 1;
+                }
+                .work-title {
+                  opacity: 1;
+                }
+              }
+              // 썸네일
+              // 푸르넷 예비교사 온라인 교육 (예시. 옮겨야 함.)
+              &:nth-child(2) {
+                background: {
+                  position: center;
+                  size: 80%;
+                  image: url("#{$img-project}03/thumbnail.png");
+                  color: color("white");
+                  repeat: no-repeat;
+                }
+              }
               // 임시
               &:not(:first-child) {
                 @include mobile {
@@ -182,6 +223,7 @@ body.page-home {
           }
         }
       }
+      // career
       &.section04 {
         position: relative;
         .inner {
@@ -327,6 +369,7 @@ body.page-home {
           }
         }
       }
+      // contact
       &.section05 {
         @include mobile {
           padding: 60px 0;

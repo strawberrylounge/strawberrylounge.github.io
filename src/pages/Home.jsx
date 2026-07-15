@@ -239,17 +239,17 @@ function Home() {
       {/* section03: works */}
       <section className="section section03">
         <div className="inner">
-          <div className="works">
+          <ul className="works">
             {featuredProjects.map((project, idx) => (
-              <div
+              <li
                 key={project.id}
                 className={`work work0${idx + 1}`}
                 onClick={() => openModal(project)}
               >
-                {project.title}
-              </div>
+                <div className="work-title">{project.title}</div>
+              </li>
             ))}
-          </div>
+          </ul>
           <Link to="/works" className="btn-more">
             더보기
           </Link>

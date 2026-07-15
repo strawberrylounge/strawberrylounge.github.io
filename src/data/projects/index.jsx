@@ -6,13 +6,14 @@
 import Project01 from "./contents/Project01";
 import Project02 from "./contents/Project02";
 import Project03 from "./contents/Project03";
+import Project04 from "./contents/Project04";
 
 import "./Projects.scss";
 
 export const projects = [
   {
     id: "project01",
-    featured: true,
+    featured: false,
     title: "mood-diary",
     techStack: ["React Native", "TypeScript", "HTML", "SCSS"],
     summary: "작성 중...",
@@ -34,7 +35,7 @@ export const projects = [
     period: "2026.01.05 ~ 2026.02.12",
     role: "프론트엔드 개발",
     techStack: ["jsp", "SCSS", "JavaScript", "jQuery", "Figma", "gitlab"],
-    summary: "푸르넷 예비교사 대상 온라인 학습 사이트 개발",
+    summary: "푸르넷 정식 교사가 되기 전 예비 교육을 받는 온라인 학습 사이트",
     Content: Project03,
     links: [
       {
@@ -45,6 +46,23 @@ export const projects = [
       {
         label: "목업 페이지",
         url: "https://strawberrylounge.github.io/online/main.html",
+        private: false,
+      },
+    ],
+  },
+  {
+    id: "project04",
+    featured: true,
+    title: "푸르넷 아이스쿨",
+    company: "금성출판사",
+    role: "프론트엔드 개발",
+    techStack: ["jsp", "SCSS", "JavaScript", "jQuery", "Figma", "gitlab"],
+    summary: "유아 및 초등학생을 대상으로 한 학습 사이트",
+    Content: Project04,
+    links: [
+      {
+        label: "사이트",
+        url: "https://www.purunet-ischool.co.kr",
         private: false,
       },
     ],

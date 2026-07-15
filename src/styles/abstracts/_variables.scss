@@ -82,5 +82,6 @@ $line-height: 160% !default;
 	Path
 ============================================================= */
 // img path
-$url: "http://example.com/";
+$url: "@/assets/";
 $img: $url + "images/";
+$img-project: $img + "project/";
