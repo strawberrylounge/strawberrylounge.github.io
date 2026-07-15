@@ -1,11 +1,16 @@
+// 추후 이미지 순서 정리
+
 import img01 from "@/assets/images/project/03/01.png";
 import img02 from "@/assets/images/project/03/02.png";
+
+import img06 from "@/assets/images/project/03/06.png";
 
 import img08 from "@/assets/images/project/03/08.png";
 import img09 from "@/assets/images/project/03/09.png";
 import img10 from "@/assets/images/project/03/10.png";
 import img11 from "@/assets/images/project/03/11.png";
 import img12 from "@/assets/images/project/03/12.png";
+import img13 from "@/assets/images/project/03/13.png";
 
 const Project03 = () => (
   <div className="project-details">
@@ -126,6 +131,10 @@ const Project03 = () => (
             <img src={img09} alt="" class="img img-responsive" />
             <sub>실제 사용하고자 하는 페이지에서 불러오기</sub>
           </p>
+          <p>
+            <img src={img13} alt="" class="img img-responsive" />
+            <sub>리소스를 알맞은 위치에 정리</sub>
+          </p>
         </li>
         <li>
           <h5>JSP 환경에서 커스텀 그래프 만들기</h5>
@@ -145,7 +154,7 @@ const Project03 = () => (
             <code>&lt;jsp:include&gt;</code>와 <code>&lt;jsp:param&gt;</code>
             으로 진행률 값(progress)과 인스턴스 식별자(id)를 파라미터로 주입받는
             구조로 만들었습니다. id를 별도로 받게 한 이유는, 한 화면에 PC용과
-            모바일용 진행률 그래프가 동시에 렌더링되는데
+            모바일용 진행률 그래프가 동시에 렌더링되는데{" "}
             <code>&lt;linearGradient id="..."&gt;</code>가 중복되면{" "}
             <code>url(#progress-gradient-...)</code>
             참조가 서로 충돌해 엉뚱한 색이 적용될 수 있기 때문이었습니다.
@@ -173,6 +182,10 @@ const Project03 = () => (
           <p>
             <img src={img12} alt="" class="img img-responsive" />
             <sub>그래프를 불러와 적용</sub>
+          </p>
+          <p>
+            <img src={img06} alt="" class="img img-responsive" />
+            <sub>CSS Transform이 적용되고 있는 모습</sub>
           </p>
         </li>
       </ul>
