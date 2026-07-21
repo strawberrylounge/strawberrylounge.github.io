@@ -1,16 +1,15 @@
-// 추후 이미지 순서 정리
-
 import img01 from "@/assets/images/project/03/01.png";
 import img02 from "@/assets/images/project/03/02.png";
-
+import img03 from "@/assets/images/project/03/03.png";
+import img03m from "@/assets/images/project/03/03-m.png";
+import img04 from "@/assets/images/project/03/04.png";
+import img05 from "@/assets/images/project/03/05.png";
 import img06 from "@/assets/images/project/03/06.png";
-
+import img07 from "@/assets/images/project/03/07.png";
+import img07m from "@/assets/images/project/03/07-m.png";
 import img08 from "@/assets/images/project/03/08.png";
 import img09 from "@/assets/images/project/03/09.png";
 import img10 from "@/assets/images/project/03/10.png";
-import img11 from "@/assets/images/project/03/11.png";
-import img12 from "@/assets/images/project/03/12.png";
-import img13 from "@/assets/images/project/03/13.png";
 
 const Project03 = () => (
   <div className="project-details">
@@ -47,14 +46,18 @@ const Project03 = () => (
             동적으로 로드되도록 구성하여, 불필요한 스크립트 로드를 줄이고
             유지보수 시 영향 범위를 페이지 단위로 한정할 수 있도록 했습니다.
           </p>
-          <p>
-            <img src={img01} alt="" class="img img-responsive" />
-            <sub>온라인 강의 모듈을 위한 Tiles 정의</sub>
-          </p>
-          <p>
-            <img src={img02} alt="" class="img img-responsive" />
-            <sub>페이지별로 필요한 리소스만 동적 로드</sub>
-          </p>
+          <div class="description-img">
+            <figure>
+              <img src={img01} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>온라인 강의 모듈을 위한 Tiles 정의</figcaption>
+          </div>
+          <div class="description-img">
+            <figure>
+              <img src={img02} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>페이지별로 필요한 리소스만 동적 로드</figcaption>
+          </div>
         </li>
       </ul>
     </section>
@@ -81,14 +84,28 @@ const Project03 = () => (
             알고 있는 다른 도구의 멘탈 모델과 연결 지어 학습하는 것이 효과적인
             접근법이라는 것을 배웠습니다.
           </p>
-          <p>
-            <img src={img10} alt="" class="img img-responsive" />
-            <sub>CSS를 적용한 모습</sub>
-          </p>
+          <div class="description-img">
+            <figure>
+              <img
+                src={img03}
+                alt="설명 이미지"
+                class="img img-responsive pc-only"
+              />
+              <img
+                src={img03m}
+                alt="설명 이미지"
+                class="img img-responsive m-only"
+              />
+            </figure>
+            <figcaption>CSS를 적용한 모습</figcaption>
+          </div>
+          <div className="description-img">
+            <figure>
+              <img src={img04} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>사용된 코드</figcaption>
+          </div>
         </li>
-
-        {/* <li>커스텀 마크업 aria-role</li>
-        <li>헷갈리는 마크업 정립</li> */}
       </ul>
     </section>
 
@@ -111,8 +128,8 @@ const Project03 = () => (
             분기로 필요한 SVG만 렌더링하도록 구성했습니다. React나 Vue의 아이콘
             컴포넌트처럼, JSP의 include·param 메커니즘을 활용해 재사용 가능한 뷰
             프래그먼트로 만든 것입니다.
-            <br />
-            <br />
+          </p>
+          <p>
             하지만 이 파일을 정적 리소스 폴더(assets)에 두려고 했을 때는 정상
             동작하지 않았는데, 원인을 추적해보니 <code>/online/**</code> 경로가
             Spring의 ResourceHandlerRegistry에 정적 리소스 핸들러로 등록되어
@@ -123,18 +140,33 @@ const Project03 = () => (
             두어야만 파라미터 기반 분기 렌더링이 정상적으로 동작한다는 것을
             확인하고 구조를 맞췄습니다.
           </p>
-          <p>
-            <img src={img08} alt="" class="img img-responsive" />
-            <sub>icons.jsp 내에 SVG 코드들을 정리</sub>
-          </p>
-          <p>
-            <img src={img09} alt="" class="img img-responsive" />
-            <sub>실제 사용하고자 하는 페이지에서 불러오기</sub>
-          </p>
-          <p>
-            <img src={img13} alt="" class="img img-responsive" />
-            <sub>리소스를 알맞은 위치에 정리</sub>
-          </p>
+          <div class="description-img">
+            <figure>
+              <img src={img05} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>icons.jsp 내에 SVG 코드들을 정리</figcaption>
+          </div>
+          <div class="description-img">
+            <figure>
+              <img src={img06} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>실제 사용하고자 하는 페이지에서 불러오기</figcaption>
+          </div>
+          <div class="description-img">
+            <figure>
+              <img
+                src={img07}
+                alt="설명 이미지"
+                class="img img-responsive pc-only"
+              />
+              <img
+                src={img07m}
+                alt="설명 이미지"
+                class="img img-responsive m-only"
+              />
+            </figure>
+            <figcaption>리소스를 알맞은 위치에 정리</figcaption>
+          </div>
         </li>
         <li>
           <h5>JSP 환경에서 커스텀 그래프 만들기</h5>
@@ -144,8 +176,8 @@ const Project03 = () => (
             <code>conic-gradient</code> 같은 순수 CSS 기법보다는 SVG의{" "}
             <code>path</code>와 <code>linearGradient</code> 조합이 정확도와
             브라우저 호환성 면에서 더 낫다고 판단했습니다.
-            <br />
-            <br />
+          </p>
+          <p>
             다만 이 프로젝트는 클라이언트 프레임워크 없이 JSP로 서버에서
             마크업을 직접 렌더링하는 구조라, 진행률 값이 바뀔 때마다 그래프
             자체를 다시 그려주는 컴포넌트를 만들 수 없었습니다. 그래서 앞서
@@ -158,8 +190,8 @@ const Project03 = () => (
             <code>&lt;linearGradient id="..."&gt;</code>가 중복되면{" "}
             <code>url(#progress-gradient-...)</code>
             참조가 서로 충돌해 엉뚱한 색이 적용될 수 있기 때문이었습니다.
-            <br />
-            <br />
+          </p>
+          <p>
             색상 표현은 진행 상태(진행 중/수강 완료)에 따라{" "}
             <code>&lt;c:when&gt;</code>으로 서로 다른{" "}
             <code>linearGradient</code>를 조건부 정의하고, path의 fill을{" "}
@@ -175,18 +207,24 @@ const Project03 = () => (
             것이고, 여기에 CSS transition을 더해 값이 바뀔 때 도넛이 자연스럽게
             차오르는 애니메이션 얻을 수 있었습니다.
           </p>
-          <p>
-            <img src={img11} alt="" class="img img-responsive" />
-            <sub>progress.jsp 내 SVG 코드</sub>
-          </p>
-          <p>
-            <img src={img12} alt="" class="img img-responsive" />
-            <sub>그래프를 불러와 적용</sub>
-          </p>
-          <p>
-            <img src={img06} alt="" class="img img-responsive" />
-            <sub>CSS Transform이 적용되고 있는 모습</sub>
-          </p>
+          <div class="description-img">
+            <figure>
+              <img src={img08} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>progress.jsp 내 SVG 코드</figcaption>
+          </div>
+          <div class="description-img">
+            <figure>
+              <img src={img09} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>그래프를 불러와 적용</figcaption>
+          </div>
+          <div class="description-img">
+            <figure>
+              <img src={img10} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>CSS Transform이 적용되고 있는 모습</figcaption>
+          </div>
         </li>
       </ul>
     </section>
