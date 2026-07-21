@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>푸르넷 예비교사 온라인 교육 (UI 목업)</title>
+  <link rel="stylesheet" type="text/css" href="./css/common.css"/>
+  <link rel="stylesheet" type="text/css" href="./css/pages/course.css"/>
+  <style>
+    /* 목업 안내 배너 (실제 서비스 스타일과 분리) */
+    #mockup-notice {
+      position: relative;
+      z-index: 10;
+      padding: 10px 16px;
+      background: #121212;
+      color: #fff;
+      font-size: 13px;
+      text-align: center;
+    }
+    #mockup-notice a { color: #1ecad3; text-decoration: underline; }
+    .thumb-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #6f38e4, #1ecad3);
+    }
+    .thumb-placeholder svg { width: 28px; height: 28px; fill: #fff; opacity: 0.9; }
+  </style>
+</head>
+<body>
+  <div id="mockup-notice">
+    이 페이지는 실제 서비스가 아닌, UI 개발 담당 화면을 재현한 목업입니다.
+  </div>
+
+  <nav id="skip">
+    <ul>
+      <li><a href="#content">본문 콘텐츠 바로가기</a></li>
+      <li><a href="#footer">푸터 바로가기</a></li>
+    </ul>
+  </nav>
+
+  <div class="wrapper">
+    <div id="container">
+
+      <!-- HEADER -->
+      <header id="header">
+        <h1><a href="./main.html" class="logo" title="푸르넷 예비교사 온라인 교육"></a></h1>
+        <nav class="nav" aria-label="사용자 메뉴">
+          <!-- PC -->
+          <div class="pc-only">
+            <div class="account-info-wrap">
+              <span class="account-station">동수원지점</span>
+              <span class="account-name"><b class="font-body-l text-gray900">김민준</b>선생님</span>
+            </div>
+            <ul class="account-ctrls">
+              <li><a href="#"><img src="./images/common/btn-changePw@2x.png" class="img img-responsive" alt="비밀번호 변경" title="비밀번호 변경"></a></li>
+              <li><button type="button"><img src="./images/common/btn-logout@2x.png" class="img img-responsive" alt="로그아웃" title="로그아웃"></button></li>
+            </ul>
+          </div>
+          <!-- MOBILE -->
+          <div class="m-only">
+            <button type="button" class="btn-account-ctrl"><img src="./images/common/btn-ctrlAuth@2x.png" class="img img-responsive" alt="계정 관리"></button>
+
+            <div class="account-ctrls-wrap">
+              <button type="button" id="btnClose" class="btn-close-account-ctrl" aria-label="닫기">
+                <span class="icon btn-icon" aria-hidden="true">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="inherit">
+                    <path d="M2.43233 4.81871C1.85589 4.25212 1.85589 3.3335 2.43233 2.76691C3.00878 2.20032 3.94338 2.20032 4.51983 2.76691L21.5677 19.5233C22.1441 20.0898 22.1441 21.0085 21.5677 21.5751C20.9912 22.1416 20.0566 22.1416 19.4802 21.5751L2.43233 4.81871Z" fill="inherit"/>
+                    <path d="M19.4802 2.42494C20.0566 1.85835 20.9912 1.85835 21.5677 2.42494C22.1441 2.99153 22.1441 3.91015 21.5677 4.47674L4.51982 21.2331C3.94338 21.7997 3.00878 21.7997 2.43233 21.2331C1.85589 20.6665 1.85589 19.7479 2.43233 19.1813L19.4802 2.42494Z" fill="inherit"/>
+                  </svg>
+                </span>
+              </button>
+              <dialog class="account-ctrls">
+                <div class="account-info-wrap">
+                  <span class="account-station">동수원지점</span>
+                  <span class="account-name"><b class="font-body-l text-gray900">김민준</b>선생님</span>
+                </div>
+                <div class="btns">
+                  <a href="#" class="btn btn-primary btn-primary-sm">비밀번호 변경</a>
+                  <button type="button" class="btn btn-primary btn-primary-sm">로그아웃</button>
+                </div>
+              </dialog>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- SUB-HEADER -->
+      <section class="hero-course">
+        <div class="inner">
+          <div class="page-title-wrap">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="home"><a href="./main.html"><img src="./images/common/icons/icon-home@2x.png" class="img img-responsive" alt="HOME"></a></li>
+                <li><a href="#" aria-current="page">나의 수강 현황</a></li>
+              </ol>
+            </nav>
+            <h2><b class="font-black text-mint">푸르넷 예비교사</b> 온라인 교육</h2>
+          </div>
+
+          <div id="hero-progress-area">
+            <!-- PROGRESS (PC) -->
+            <div class="progress-wrap pc-only">
+              <em class="progress-title">총 진도율</em>
+              <div class="progress">
+                <div class="progress-circle">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" class="progress-semicircle-svg" style="--progress: 56;">
+                    <defs>
+                      <linearGradient id="progress-gradient-totalProgress" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#FF9245"/>
+                        <stop offset="100%" stop-color="#FF5053"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M1.04907e-05 120C1.3273e-05 88.174 12.6428 57.6515 35.1472 35.1472C57.6516 12.6428 88.174 -1.3273e-05 120 -1.04907e-05C151.826 -7.70842e-06 182.348 12.6428 204.853 35.1472C227.357 57.6515 240 88.174 240 120L180 120C180 104.087 173.679 88.8258 162.426 77.5736C151.174 66.3214 135.913 60 120 60C104.087 60 88.8258 66.3214 77.5736 77.5736C66.3214 88.8258 60 104.087 60 120L1.04907e-05 120Z" fill="#444444"/>
+                    <path d="M1.04907e-05 120C1.3273e-05 88.174 12.6428 57.6515 35.1472 35.1472C57.6516 12.6428 88.174 -1.3273e-05 120 -1.04907e-05C151.826 -7.70842e-06 182.348 12.6428 204.853 35.1472C227.357 57.6515 240 88.174 240 120L180 120C180 104.087 173.679 88.8258 162.426 77.5736C151.174 66.3214 135.913 60 120 60C104.087 60 88.8258 66.3214 77.5736 77.5736C66.3214 88.8258 60 104.087 60 120L1.04907e-05 120Z" fill="url(#progress-gradient-totalProgress)" class="progress-bar" style="transform-origin: 120px 120px; transform: rotate(calc(-180deg + var(--progress) * 1.8deg));"/>
+                  </svg>
+                </div>
+                <div class="progress-txt">
+                  <strong>56%</strong>
+                  <span class="progress-status">학습 중</span>
+                </div>
+              </div>
+            </div>
+            <!-- PROGRESS (TABLET, MOBILE) -->
+            <div class="progress-wrap m-only">
+              <div class="progress-title-wrap">
+                <em class="progress-title">총 진도율</em>
+                <strong>56%</strong>
+              </div>
+              <div class="progress">
+                <div class="progress-circle">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" class="progress-semicircle-svg" style="--progress: 56;">
+                    <defs>
+                      <linearGradient id="progress-gradient-totalProgress-mo" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#FF9245"/>
+                        <stop offset="100%" stop-color="#FF5053"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M1.04907e-05 120C1.3273e-05 88.174 12.6428 57.6515 35.1472 35.1472C57.6516 12.6428 88.174 -1.3273e-05 120 -1.04907e-05C151.826 -7.70842e-06 182.348 12.6428 204.853 35.1472C227.357 57.6515 240 88.174 240 120L180 120C180 104.087 173.679 88.8258 162.426 77.5736C151.174 66.3214 135.913 60 120 60C104.087 60 88.8258 66.3214 77.5736 77.5736C66.3214 88.8258 60 104.087 60 120L1.04907e-05 120Z" fill="#444444"/>
+                    <path d="M1.04907e-05 120C1.3273e-05 88.174 12.6428 57.6515 35.1472 35.1472C57.6516 12.6428 88.174 -1.3273e-05 120 -1.04907e-05C151.826 -7.70842e-06 182.348 12.6428 204.853 35.1472C227.357 57.6515 240 88.174 240 120L180 120C180 104.087 173.679 88.8258 162.426 77.5736C151.174 66.3214 135.913 60 120 60C104.087 60 88.8258 66.3214 77.5736 77.5736C66.3214 88.8258 60 104.087 60 120L1.04907e-05 120Z" fill="url(#progress-gradient-totalProgress-mo)" class="progress-bar" style="transform-origin: 120px 120px; transform: rotate(calc(-180deg + var(--progress) * 1.8deg));"/>
+                  </svg>
+                </div>
+                <span class="progress-txt progress-status">학습 중</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTENT -->
+      <main id="content" class="page-course" tabindex="-1">
+        <div class="inner">
+
+          <!-- 학습 현황 카드 section -->
+          <section class="section-status" aria-labelledby="titleStatus">
+            <h2 id="titleStatus" class="sr-only">나의 수강 현황</h2>
+
+            <div class="status-card-wrap">
+              <div class="status-card status-title-box">
+                <div class="status-card__progress">
+                  <div class="status-card__progress-item">
+                    <span>수강 완료/총 강좌</span>
+                    <b><em>1</em>/3</b>
+                  </div>
+                  <div class="status-card__progress-item">
+                    <span>학습 완료/총 차시</span>
+                    <b><em>20</em>/36</b>
+                  </div>
+                </div>
+                <small>
+                  <span class="icon icon-caption" aria-hidden="true"></span>
+                  수강 현황
+                </small>
+              </div>
+              <div class="status-card">
+                <div class="status-card__test-wrap">
+                  <div class="status-title-box">
+                    <div class="status-card__test">
+                      <div class="status-card__test-item">
+                        <div class="status-card__test-item-label-wrap">
+                          <span class="test-item-label">
+                            평가1
+                            <span aria-hidden="true">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg>
+                            </span>
+                          </span>
+                          <div class="test-item-title">교육과정의 이해</div>
+                        </div>
+                        <span class="status-card__test-item-value">92점</span>
+                      </div>
+                      <div class="status-card__test-item">
+                        <div class="status-card__test-item-label-wrap">
+                          <span class="test-item-label">
+                            평가2
+                            <span aria-hidden="true">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg>
+                            </span>
+                          </span>
+                          <div class="test-item-title">초등 교과목의 이해</div>
+                        </div>
+                        <span class="status-card__test-item-value">미응시</span>
+                      </div>
+                      <div class="status-card__test-item">
+                        <div class="status-card__test-item-label-wrap">
+                          <span class="test-item-label">
+                            평가3
+                            <span aria-hidden="true">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg>
+                            </span>
+                          </span>
+                          <div class="test-item-title">푸르넷 커리큘럼 및 시스템 소개</div>
+                        </div>
+                        <span class="status-card__test-item-value">미응시</span>
+                      </div>
+                    </div>
+                    <small>
+                      <span class="icon icon-caption" aria-hidden="true"></span>
+                      평가 현황
+                    </small>
+                  </div>
+                  <div class="status-card__stamp">
+                    <div class="stamp-wrap ing pc-only">
+                      <img src="./images/course/stamp-ing.png" alt="수강 중" class="img img-responsive">
+                    </div>
+                    <div class="stamp-wrap ing m-only">수강 중</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 강의 리스트 section -->
+          <section class="section-course-list" aria-labelledby="titleCourseList">
+            <h2 id="titleCourseList" class="sr-only">나의 강의</h2>
+
+            <div class="course-list">
+
+              <!-- 강의 1: 학습완료 -->
+              <div class="course-item" id="lect1">
+                <div class="course-item-top">
+                  <div class="course-item-top__inner">
+                    <div class="course-item-top__video pc-only thum-play">
+                      <div class="thumb-placeholder img img-cover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg>
+                      </div>
+                    </div>
+                    <div class="course-item-top__info">
+                      <h3 class="course-title">
+                        <span class="course-badge completed">수강완료</span>
+                        교육과정의 이해
+                      </h3>
+                      <dl class="course-meta">
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>수강 기간</dt>
+                          <dd>26. 03. 02. ~ 26. 08. 31.</dd>
+                        </div>
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>남은 수강일</dt>
+                          <dd>47일</dd>
+                        </div>
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>복습 기간</dt>
+                          <dd>26. 03. 02. ~ 26. 09. 30.</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="course-item-top__btn">
+                    <a class="btn-download-material">
+                      <span class="icon btn-icon icon-download" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="inherit"><path d="M16.9277 11.25C17.4742 11.2501 17.917 11.6844 17.917 12.2197V15.1279C17.9169 16.734 16.5878 18.0361 14.9482 18.0361H5.05176C3.41239 18.0359 2.08315 16.7339 2.08301 15.1279V12.2197C2.08301 11.6843 2.52669 11.25 3.07324 11.25C3.61966 11.2502 4.0625 11.6844 4.0625 12.2197V15.1279C4.06264 15.6631 4.50549 16.0965 5.05176 16.0967H14.9482C15.4947 16.0967 15.9374 15.6632 15.9375 15.1279V12.2197C15.9375 11.6843 16.3812 11.25 16.9277 11.25ZM10.0898 1.66699C10.7143 1.66719 11.2217 2.10422 11.2217 2.64355V9.65137L13.4414 7.59668C13.8389 7.22882 14.4844 7.22868 14.8818 7.59668C15.2784 7.96459 15.2785 8.56081 14.8818 8.92871L10.8096 12.6992C10.4121 13.067 9.76757 13.067 9.37012 12.6992L5.29883 8.92871C4.90153 8.5607 4.90157 7.96471 5.29883 7.59668C5.69636 7.22882 6.34085 7.22868 6.73828 7.59668L8.95898 9.65234V2.64355C8.95898 2.10421 9.46538 1.66716 10.0898 1.66699Z" fill="inherit"/></svg>
+                      </span>
+                      <span class="btn-txt">학습자료<br class="pc-only"/>다운로드</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="course-item-bottom">
+                  <div class="course-item-bottom__inner">
+                    <div class="course-item-bottom__progress">
+                      <em>나의 진도율</em>
+                      <div class="progress-lesson course-total__progress">
+                        <div class="progress-bar-wrap">
+                          <div class="progress-bar completed" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                        </div>
+                        <span class="progress-value">
+                          <em>100%</em>
+                          <span class="course-count">(<b class="text-purple">12</b>/12)</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="course-item-bottom__recent pc-only recent-div">
+                      <div class="recent-text">
+                        <span class="label">
+                          <em>최근 학습</em>
+                          <time datetime="2026-07-01">(26.07.01)</time>
+                        </span>
+                        <p class="recent-content">
+                          <em class="recent-lesson text-mint">[12차시]</em>
+                          교육과정 실행과 평가
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-toggle-panel" aria-expanded="false" aria-controls="courseDetail1">
+                    <span class="text-open">강좌 현황 상세 보기</span>
+                    <span class="text-close">닫기</span>
+                    <span class="icon btn-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="inherit"><path d="M1.89123 15.0008C2.13493 15.0008 2.37864 14.907 2.5661 14.7227L9.09615 8.17578C9.46795 7.80391 9.46795 7.19766 9.09615 6.82578L2.56298 0.278906C2.19117 -0.0929688 1.58816 -0.0929688 1.21635 0.278906C0.844548 0.650781 0.844548 1.25703 1.21635 1.62891L7.07464 7.50078L1.21635 13.3727C0.844548 13.7445 0.844548 14.3508 1.21635 14.7227C1.40382 14.9102 1.64752 15.0008 1.89123 15.0008Z" fill="inherit"/></svg>
+                    </span>
+                  </button>
+
+                  <div id="courseDetail1" class="course-detail" hidden>
+                    <div class="lesson-list">
+                      <h4>차시 목록</h4>
+                      <table class="table table-lesson-list">
+                        <colgroup>
+                          <col width="*"><col width="100px"><col width="13%"><col width="17%"><col width="160px">
+                        </colgroup>
+                        <thead>
+                          <tr><th scope="col">강의명</th><th scope="col">강의시간</th><th scope="col">진도율</th><th scope="col">최종 학습일</th><th scope="col">학습하기</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-left"><div class="font-bold"><b class="text-mint">[1차시]</b><span>교직의 이해와 예비교사의 역할</span></div></td>
+                            <td>18분</td><td class="td-progress">학습완료(100%)</td><td class="td-recent"><time>26.03.05</time></td>
+                            <td class="td-play"><button type="button" class="btn-play2 replay"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span><span class="span-status-name">복습하기</span></button></td>
+                          </tr>
+                          <tr>
+                            <td class="text-left"><div class="font-bold"><b class="text-mint">[2차시]</b><span>교육과정의 개념과 유형</span></div></td>
+                            <td>20분</td><td class="td-progress">학습완료(100%)</td><td class="td-recent"><time>26.03.07</time></td>
+                            <td class="td-play"><button type="button" class="btn-play2 replay"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span><span class="span-status-name">복습하기</span></button></td>
+                          </tr>
+                          <tr>
+                            <td class="text-left"><div class="font-bold"><b class="text-mint">[12차시]</b><span>교육과정 실행과 평가</span></div></td>
+                            <td>22분</td><td class="td-progress">학습완료(100%)</td><td class="td-recent"><time>26.07.01</time></td>
+                            <td class="td-play"><button type="button" class="btn-play2 replay"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span><span class="span-status-name">복습하기</span></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <ul>
+                        <li class="lesson">
+                          <h5 class="lesson-title"><b class="text-mint">[1차시]</b><span>교직의 이해와 예비교사의 역할</span></h5>
+                          <div class="lesson-info">
+                            <div><span>18분 강의</span><span class="pl16">학습완료(100%)</span></div>
+                            <p><span>최종 학습:&nbsp;</span><time>26.03.05</time></p>
+                          </div>
+                          <button type="button" class="btn-play2 replay"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span>복습하기</button>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="lesson-test-result">
+                      <h4>학습 평가</h4>
+                      <div class="test-result-box">
+                        <div class="box-left">
+                          <button class="btn-test-result"><span class="icon icon-test" aria-hidden="true"></span>92점</button>
+                          <em>(<b class="text-purple">18</b>/20)</em>
+                        </div>
+                        <div class="box-center">
+                          <p><b>응시 완료</b></p>
+                          <dl class="test-dates"><dt>최종 응시일:</dt><dd><time>26.07.02</time></dd></dl>
+                        </div>
+                        <div class="box-right">
+                          <img src="./images/course/stamp-pass.png" alt="PASS" class="img img-responsive">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 강의 2: 학습 중 -->
+              <div class="course-item" id="lect2">
+                <div class="course-item-top">
+                  <div class="course-item-top__inner">
+                    <div class="course-item-top__video pc-only thum-play">
+                      <div class="thumb-placeholder img img-cover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg>
+                      </div>
+                    </div>
+                    <div class="course-item-top__info">
+                      <h3 class="course-title">
+                        <span class="course-badge ing">학습 중</span>
+                        초등 교과목의 이해
+                      </h3>
+                      <dl class="course-meta">
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>수강 기간</dt>
+                          <dd>26. 03. 02. ~ 26. 08. 31.</dd>
+                        </div>
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>남은 수강일</dt>
+                          <dd>47일</dd>
+                        </div>
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>복습 기간</dt>
+                          <dd>26. 03. 02. ~ 26. 09. 30.</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="course-item-top__btn">
+                    <a class="btn-download-material">
+                      <span class="icon btn-icon icon-download" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="inherit"><path d="M16.9277 11.25C17.4742 11.2501 17.917 11.6844 17.917 12.2197V15.1279C17.9169 16.734 16.5878 18.0361 14.9482 18.0361H5.05176C3.41239 18.0359 2.08315 16.7339 2.08301 15.1279V12.2197C2.08301 11.6843 2.52669 11.25 3.07324 11.25C3.61966 11.2502 4.0625 11.6844 4.0625 12.2197V15.1279C4.06264 15.6631 4.50549 16.0965 5.05176 16.0967H14.9482C15.4947 16.0967 15.9374 15.6632 15.9375 15.1279V12.2197C15.9375 11.6843 16.3812 11.25 16.9277 11.25ZM10.0898 1.66699C10.7143 1.66719 11.2217 2.10422 11.2217 2.64355V9.65137L13.4414 7.59668C13.8389 7.22882 14.4844 7.22868 14.8818 7.59668C15.2784 7.96459 15.2785 8.56081 14.8818 8.92871L10.8096 12.6992C10.4121 13.067 9.76757 13.067 9.37012 12.6992L5.29883 8.92871C4.90153 8.5607 4.90157 7.96471 5.29883 7.59668C5.69636 7.22882 6.34085 7.22868 6.73828 7.59668L8.95898 9.65234V2.64355C8.95898 2.10421 9.46538 1.66716 10.0898 1.66699Z" fill="inherit"/></svg>
+                      </span>
+                      <span class="btn-txt">학습자료<br class="pc-only"/>다운로드</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="course-item-bottom">
+                  <div class="course-item-bottom__inner">
+                    <div class="course-item-bottom__progress">
+                      <em>나의 진도율</em>
+                      <div class="progress-lesson course-total__progress">
+                        <div class="progress-bar-wrap">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%;"></div>
+                        </div>
+                        <span class="progress-value">
+                          <em>67%</em>
+                          <span class="course-count">(<b class="text-purple">8</b>/12)</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="course-item-bottom__recent pc-only recent-div">
+                      <div class="recent-text">
+                        <span class="label">
+                          <em>최근 학습</em>
+                          <time datetime="2026-07-10">(26.07.10)</time>
+                        </span>
+                        <p class="recent-content">
+                          <em class="recent-lesson text-mint">[8차시]</em>
+                          교과서 구성 원리와 활용법
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-toggle-panel" aria-expanded="false" aria-controls="courseDetail2">
+                    <span class="text-open">강좌 현황 상세 보기</span>
+                    <span class="text-close">닫기</span>
+                    <span class="icon btn-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="inherit"><path d="M1.89123 15.0008C2.13493 15.0008 2.37864 14.907 2.5661 14.7227L9.09615 8.17578C9.46795 7.80391 9.46795 7.19766 9.09615 6.82578L2.56298 0.278906C2.19117 -0.0929688 1.58816 -0.0929688 1.21635 0.278906C0.844548 0.650781 0.844548 1.25703 1.21635 1.62891L7.07464 7.50078L1.21635 13.3727C0.844548 13.7445 0.844548 14.3508 1.21635 14.7227C1.40382 14.9102 1.64752 15.0008 1.89123 15.0008Z" fill="inherit"/></svg>
+                    </span>
+                  </button>
+
+                  <div id="courseDetail2" class="course-detail" hidden>
+                    <div class="lesson-list">
+                      <h4>차시 목록</h4>
+                      <table class="table table-lesson-list">
+                        <colgroup>
+                          <col width="*"><col width="100px"><col width="13%"><col width="17%"><col width="160px">
+                        </colgroup>
+                        <thead>
+                          <tr><th scope="col">강의명</th><th scope="col">강의시간</th><th scope="col">진도율</th><th scope="col">최종 학습일</th><th scope="col">학습하기</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-left"><div class="font-bold"><b class="text-mint">[7차시]</b><span>학습자 발달 단계별 지도법</span></div></td>
+                            <td>19분</td><td class="td-progress">학습완료(100%)</td><td class="td-recent"><time>26.07.08</time></td>
+                            <td class="td-play"><button type="button" class="btn-play2 replay"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span><span class="span-status-name">복습하기</span></button></td>
+                          </tr>
+                          <tr>
+                            <td class="text-left"><div class="font-bold"><b class="text-mint">[8차시]</b><span>교과서 구성 원리와 활용법</span></div></td>
+                            <td>21분</td><td class="td-progress">학습 중(45%)</td><td class="td-recent"><time>26.07.10</time></td>
+                            <td class="td-play"><button type="button" class="btn-play2 continue"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span><span class="span-status-name">이어보기</span></button></td>
+                          </tr>
+                          <tr>
+                            <td class="text-left"><div class="font-bold"><b class="text-mint">[9차시]</b><span>수업 설계와 지도안 작성</span></div></td>
+                            <td>23분</td><td class="td-progress">학습 전(0%)</td><td class="td-recent"><time>-</time></td>
+                            <td class="td-play"><button type="button" class="btn-play2"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span><span class="span-status-name">학습하기</span></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <ul>
+                        <li class="lesson">
+                          <h5 class="lesson-title"><b class="text-mint">[8차시]</b><span>교과서 구성 원리와 활용법</span></h5>
+                          <div class="lesson-info">
+                            <div><span>21분 강의</span><span class="pl16">학습 중(45%)</span></div>
+                            <p><span>최종 학습:&nbsp;</span><time>26.07.10</time></p>
+                          </div>
+                          <button type="button" class="btn-play2 continue"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span>이어보기</button>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="lesson-test-result">
+                      <h4>학습 평가</h4>
+                      <div class="test-result-box">
+                        <div class="box-left word-keep-all">
+                          모든 차시의 학습을 완료한 후 응시해주시기 바랍니다.
+                        </div>
+                        <div class="box-center text-gray300">미응시</div>
+                        <div class="box-right">-</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 강의 3: 학습 전 -->
+              <div class="course-item" id="lect3">
+                <div class="course-item-top">
+                  <div class="course-item-top__inner">
+                    <div class="course-item-top__video pc-only thum-play">
+                      <div class="thumb-placeholder img img-cover">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg>
+                      </div>
+                    </div>
+                    <div class="course-item-top__info">
+                      <h3 class="course-title">
+                        <span class="course-badge incomplete">학습 전</span>
+                        푸르넷 커리큘럼 및 시스템 소개
+                      </h3>
+                      <dl class="course-meta">
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>수강 기간</dt>
+                          <dd>26. 03. 02. ~ 26. 08. 31.</dd>
+                        </div>
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>남은 수강일</dt>
+                          <dd>47일</dd>
+                        </div>
+                        <div class="course-meta__item">
+                          <span class="icon icon-bullet2" aria-hidden="true"></span>
+                          <dt>복습 기간</dt>
+                          <dd>26. 03. 02. ~ 26. 09. 30.</dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                  <div class="course-item-top__btn">
+                    <a class="btn-download-material">
+                      <span class="icon btn-icon icon-download" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="inherit"><path d="M16.9277 11.25C17.4742 11.2501 17.917 11.6844 17.917 12.2197V15.1279C17.9169 16.734 16.5878 18.0361 14.9482 18.0361H5.05176C3.41239 18.0359 2.08315 16.7339 2.08301 15.1279V12.2197C2.08301 11.6843 2.52669 11.25 3.07324 11.25C3.61966 11.2502 4.0625 11.6844 4.0625 12.2197V15.1279C4.06264 15.6631 4.50549 16.0965 5.05176 16.0967H14.9482C15.4947 16.0967 15.9374 15.6632 15.9375 15.1279V12.2197C15.9375 11.6843 16.3812 11.25 16.9277 11.25ZM10.0898 1.66699C10.7143 1.66719 11.2217 2.10422 11.2217 2.64355V9.65137L13.4414 7.59668C13.8389 7.22882 14.4844 7.22868 14.8818 7.59668C15.2784 7.96459 15.2785 8.56081 14.8818 8.92871L10.8096 12.6992C10.4121 13.067 9.76757 13.067 9.37012 12.6992L5.29883 8.92871C4.90153 8.5607 4.90157 7.96471 5.29883 7.59668C5.69636 7.22882 6.34085 7.22868 6.73828 7.59668L8.95898 9.65234V2.64355C8.95898 2.10421 9.46538 1.66716 10.0898 1.66699Z" fill="inherit"/></svg>
+                      </span>
+                      <span class="btn-txt">학습자료<br class="pc-only"/>다운로드</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="course-item-bottom">
+                  <div class="course-item-bottom__inner">
+                    <div class="course-item-bottom__progress">
+                      <em>나의 진도율</em>
+                      <div class="progress-lesson course-total__progress">
+                        <div class="progress-bar-wrap">
+                          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                        </div>
+                        <span class="progress-value">
+                          <em>0%</em>
+                          <span class="course-count">(<b class="text-purple">0</b>/12)</span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="course-item-bottom__recent pc-only recent-div">
+                      <div class="recent-text">
+                        <span class="label"><em>최근 학습</em></span>
+                        <p class="recent-content font-regular text-gray600">최근 학습이 없습니다.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-toggle-panel" aria-expanded="false" aria-controls="courseDetail3">
+                    <span class="text-open">강좌 현황 상세 보기</span>
+                    <span class="text-close">닫기</span>
+                    <span class="icon btn-icon" aria-hidden="true">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="15" viewBox="0 0 10 15" fill="inherit"><path d="M1.89123 15.0008C2.13493 15.0008 2.37864 14.907 2.5661 14.7227L9.09615 8.17578C9.46795 7.80391 9.46795 7.19766 9.09615 6.82578L2.56298 0.278906C2.19117 -0.0929688 1.58816 -0.0929688 1.21635 0.278906C0.844548 0.650781 0.844548 1.25703 1.21635 1.62891L7.07464 7.50078L1.21635 13.3727C0.844548 13.7445 0.844548 14.3508 1.21635 14.7227C1.40382 14.9102 1.64752 15.0008 1.89123 15.0008Z" fill="inherit"/></svg>
+                    </span>
+                  </button>
+
+                  <div id="courseDetail3" class="course-detail" hidden>
+                    <div class="lesson-list">
+                      <h4>차시 목록</h4>
+                      <table class="table table-lesson-list">
+                        <colgroup>
+                          <col width="*"><col width="100px"><col width="13%"><col width="17%"><col width="160px">
+                        </colgroup>
+                        <thead>
+                          <tr><th scope="col">강의명</th><th scope="col">강의시간</th><th scope="col">진도율</th><th scope="col">최종 학습일</th><th scope="col">학습하기</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-left"><div class="font-bold"><b class="text-mint">[1차시]</b><span>푸르넷 서비스 소개</span></div></td>
+                            <td>15분</td><td class="td-progress">학습 전(0%)</td><td class="td-recent"><time>-</time></td>
+                            <td class="td-play"><button type="button" class="btn-play2"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span><span class="span-status-name">학습하기</span></button></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <ul>
+                        <li class="lesson">
+                          <h5 class="lesson-title"><b class="text-mint">[1차시]</b><span>푸르넷 서비스 소개</span></h5>
+                          <div class="lesson-info">
+                            <div><span>15분 강의</span><span class="pl16">학습 전(0%)</span></div>
+                            <p><span>최종 학습:&nbsp;</span><time>-</time></p>
+                          </div>
+                          <button type="button" class="btn-play2"><span class="icon btn-icon icon-play" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="inherit"><path d="M7.77249 15.052L1.69239 4.80008C1.56704 4.58082 1.50071 4.33222 1.50001 4.07903C1.4993 3.82584 1.56425 3.57687 1.68839 3.3569C1.81253 3.13693 1.99154 2.95362 2.20759 2.82522C2.42365 2.69681 2.66923 2.62778 2.9199 2.625H15.0801C15.3308 2.62778 15.5764 2.69681 15.7924 2.82522C16.0085 2.95362 16.1875 3.13693 16.3116 3.3569C16.4357 3.57687 16.5007 3.82584 16.5 4.07903C16.4993 4.33222 16.433 4.58082 16.3076 4.80008L10.2275 15.052C10.0995 15.2651 9.91935 15.4412 9.70434 15.5635C9.48933 15.6858 9.24675 15.75 9 15.75C8.75325 15.75 8.51067 15.6858 8.29566 15.5635C8.08065 15.4412 7.90046 15.2651 7.77249 15.052Z" fill="inherit"/></svg></span>학습하기</button>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="lesson-test-result">
+                      <h4>학습 평가</h4>
+                      <div class="test-result-box">
+                        <div class="box-left word-keep-all">
+                          모든 차시의 학습을 완료한 후 응시해주시기 바랍니다.
+                        </div>
+                        <div class="box-center text-gray300">미응시</div>
+                        <div class="box-right">-</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <!-- FOOTER -->
+      <footer id="footer">
+        <div class="footer-inner">
+          <div class="footer-left">
+            <img src="./images/common/f-logo@2x.png" alt="KUMSUNG" class="logo"/>
+            <div class="footer-text">
+              <address>
+                <div>서울특별시 마포구 만리재옛길 23 (공덕동)</div>
+                <dl>
+                  <div>
+                    <dt><b>고객만족센터</b></dt>
+                    <dd><b><a href="tel:080-969-1000" class="font-bold">080-969-1000</a></b> / 평일 09:00~18:00 <br class="m-only"/>(점심시간 12:30~13:30)</dd>
+                  </div>
+                  <div>
+                    <dt><span>지점연결</span></dt>
+                    <dd><a href="tel:1577-7799">1577-7799</a></dd>
+                  </div>
+                </dl>
+              </address>
+              <small>COPYRIGHT2026. KUMSUNG PUBLISHING CO.LTD ALL RIGHTS RESERVED.</small>
+            </div>
+          </div>
+          <div class="footer-right">
+            <ul class="footer-links">
+              <li class="footer-link">
+                <picture><source srcset="./images/common/f-link-blog.png, ./images/common/f-link-blog@2x.png 2x"/><img src="./images/common/f-link-blog.png" alt="네이버 블로그"/></picture>
+              </li>
+              <li class="footer-link">
+                <picture><source srcset="./images/common/f-link-instagram.png, ./images/common/f-link-instagram@2x.png 2x"/><img src="./images/common/f-link-instagram.png" alt="인스타그램"/></picture>
+              </li>
+              <li class="footer-link">
+                <picture><source srcset="./images/common/f-link-facebook.png, ./images/common/f-link-facebook@2x.png 2x"/><img src="./images/common/f-link-facebook.png" alt="페이스북"/></picture>
+              </li>
+              <li class="footer-link">
+                <picture><source srcset="./images/common/f-link-kakao.png, ./images/common/f-link-kakao@2x.png 2x"/><img src="./images/common/f-link-kakao.png" alt="카카오 채널"/></picture>
+              </li>
+              <li class="footer-link">
+                <picture><source srcset="./images/common/f-link-youtube.png, ./images/common/f-link-youtube@2x.png 2x"/><img src="./images/common/f-link-youtube.png" alt="유튜브"/></picture>
+              </li>
+            </ul>
+            <div class="footer-selectbox-wrap" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="footerSelectboxLabel">
+              <span id="footerSelectboxLabel" class="footer-selectbox-label">Family Site</span>
+              <ul class="footer-selectbox-dropdown" role="listbox">
+                <li class="footer-selectbox-option" role="option" aria-selected="false">금성출판사</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="./js/common.js"></script>
+</body>
+</html>
