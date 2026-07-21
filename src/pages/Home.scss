@@ -198,12 +198,22 @@ body.page-home {
                 }
               }
               // 썸네일
-              // 푸르넷 예비교사 온라인 교육 (예시. 옮겨야 함.)
-              &:nth-child(2) {
+              // 1) 푸르넷 예비교사 온라인 교육 (예시. 옮겨야 함.)
+              &:first-child {
                 background: {
                   position: center;
                   size: 80%;
                   image: url("#{$img-project}03/thumbnail.png");
+                  color: color("white");
+                  repeat: no-repeat;
+                }
+              }
+              // 2) 푸르넷 아이스쿨
+              &:nth-child(2) {
+                background: {
+                  position: center;
+                  size: 40%;
+                  image: url("#{$img-project}04/thumbnail.png");
                   color: color("white");
                   repeat: no-repeat;
                 }

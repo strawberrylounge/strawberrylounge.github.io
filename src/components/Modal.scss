@@ -59,6 +59,7 @@
         padding: 16px;
       }
       .modal-info {
+        border-bottom: 1px solid color(gray50);
         .info-grid {
           display: flex;
           flex-direction: column;
@@ -75,15 +76,22 @@
           }
         }
         .modal-links {
-          @include flexbox();
+          @include flexbox(flex-end);
           gap: 12px;
-          padding-bottom: 24px;
+          margin-bottom: 24px;
           .modal-link {
-            @include flexbox(flex-start);
+            @include flexbox();
             gap: 4px;
+            height: 24px;
+            padding: 0 12px;
+            border-radius: 6px;
+            background: rgba($color: color("cosmic-blue"), $alpha: 0.1);
+            font-family: $font-family-code;
             font-size: rem(14);
-            color: color(gray500);
+            color: color("cosmic-blue");
+            transition: all 0.3s ease;
             &:hover {
+              font-weight: font-weight("bold");
               text-decoration: underline;
             }
           }
@@ -99,7 +107,7 @@
             min-width: 50px;
             height: 26px;
             padding: 0 12px;
-            border-radius: 4px;
+            border-radius: 13px;
             font-size: rem(14);
             text-align: center;
             line-height: 26px;
@@ -135,8 +143,7 @@
           }
         }
         .summary {
-          padding: 24px 0;
-          border-bottom: 1px solid color(gray50);
+          padding: 24px 0 8px;
           font-size: rem(16);
           color: color(gray600);
           line-height: 1.6;

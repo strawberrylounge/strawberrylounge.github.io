@@ -21,7 +21,7 @@ export const projects = [
   },
   {
     id: "project02",
-    featured: true,
+    featured: false,
     title: "tarot-shuffle",
     techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
     summary: "요약입니다.",
@@ -66,6 +66,14 @@ export const projects = [
         private: false,
       },
     ],
+  },
+  {
+    id: "project05",
+    featured: true,
+    title: "준비 중",
+    techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
+    summary: "요약입니다.",
+    Content: Project02,
   },
 ];
 

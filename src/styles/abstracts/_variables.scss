@@ -50,6 +50,8 @@ $text-color: #121212 !default;
 	Font
 ============================================================= */
 $font-family-base: "Noto Sans KR", sans-serif !default;
+$font-family-code:
+  ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
 $font-weight: (
   "regular": 400,
   "bold": 700,

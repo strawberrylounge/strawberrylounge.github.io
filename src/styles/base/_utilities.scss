@@ -328,11 +328,9 @@ $name-map: (
 // 코드 블럭
 code {
   display: inline;
-  // padding: 2px 6px;
   border-radius: 4px;
   background: color(gray100);
   color: color(supernova);
-  font-family:
-    ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: $font-family-code;
   font-size: rem(14);
 }

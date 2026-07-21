@@ -133,6 +133,18 @@ function Modal({ isOpen, onClose, projectData, children }) {
                 </div>
               )}
             </div>
+
+            {techStack && (
+              <div className="tech-stack">
+                {techStack.map((tech) => (
+                  <span key={tech} className={`tag-tech ${getTechClass(tech)}`}>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+            {summary && <p className="summary">{summary}</p>}
+
             {/* 링크 영역 (있을 때만) */}
             {links && (
               <ul className="modal-links">
@@ -148,8 +160,8 @@ function Modal({ isOpen, onClose, projectData, children }) {
                       {link.label}
                       {link.private && (
                         <IconLock
-                          size={14}
-                          color="#999"
+                          size={12}
+                          color="#4d9de0"
                           aria-label="외부 공유 불가"
                         />
                       )}
@@ -158,16 +170,6 @@ function Modal({ isOpen, onClose, projectData, children }) {
                 ))}
               </ul>
             )}
-            {techStack && (
-              <div className="tech-stack">
-                {techStack.map((tech) => (
-                  <span key={tech} className={`tag-tech ${getTechClass(tech)}`}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            )}
-            {summary && <p className="summary">{summary}</p>}
           </div>
 
           {/* 이미지 영역 (있을 때만) */}
