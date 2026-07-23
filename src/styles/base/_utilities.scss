@@ -1,5 +1,6 @@
 @use "sass:math";
 @use "sass:string";
+
 @use "../abstracts/index" as *;
 
 /* =============================================================
@@ -62,14 +63,14 @@ $name-map: (
 ============================================================= */
 // inner
 .inner {
-  width: 100%;
+  // width: 100%;
   max-width: $inner-width;
   height: 100%;
   margin: 0 auto;
   padding: 0 $spacing;
   @include mobile {
     max-width: $inner-width-mobile;
-    padding: 0 $spacing-mobile 140px;
+    padding: 0 $spacing-mobile;
   }
 }
 
