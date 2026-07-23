@@ -9,7 +9,7 @@ body.page-home {
   .wrap {
     section.section {
       @include flexbox(center);
-      min-height: 100vh;
+      min-height: 100dvh;
       color: white;
       text-align: center;
       .inner {
@@ -42,7 +42,7 @@ body.page-home {
             font-size: rem(22);
             color: color(gray300);
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-            line-height: 1.6;
+            // line-height: 1.6;
             word-break: keep-all;
             @include mobile {
               margin-top: 16px;
@@ -227,9 +227,12 @@ body.page-home {
             }
           }
           .btn-more {
-            margin-top: 16px;
+            min-width: 140px;
+            height: 48px;
+            margin-top: 38px;
+            padding: 0 12px;
+            border: 1px solid color("saturn-gold");
             color: color("saturn-gold");
-            // text-decoration: underline;
           }
         }
       }

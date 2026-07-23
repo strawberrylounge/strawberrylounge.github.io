@@ -183,7 +183,7 @@ function Home() {
       <div className="stars-large"></div>
       {/* section01: introduction */}
       <section className="section section01">
-        <Astronaut className="astronaut pc-only" />
+        {/* <Astronaut className="astronaut pc-only" /> */}
         <div className="inner">
           <h2 className="section-title">
             <span className="typing-text">{typingText}</span>
@@ -194,8 +194,7 @@ function Home() {
           >
             웹 기술은 우주처럼 방대하고 다양합니다.
             <br className="pc-only" /> 그 안에서 저는 웹 디자이너로 시작해
-            프론트엔드 개발자로 자리 잡아왔고,
-            <br className="pc-only" />
+            프론트엔드 개발자로 자리 잡아왔고, <br className="pc-only" />
             앞으로 나아가고 싶은 방향을 이 포트폴리오에 담았습니다.
           </p>
         </div>
@@ -250,8 +249,8 @@ function Home() {
               </li>
             ))}
           </ul>
-          <Link to="/works" className="btn-more">
-            더보기
+          <Link to="/works" className="btn btn-more">
+            더 보기
           </Link>
         </div>
       </section>
