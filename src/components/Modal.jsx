@@ -71,6 +71,10 @@ function Modal({ isOpen, onClose, projectData, children }) {
       "Nuxt.js": "script",
       jQuery: "script",
 
+      // 라이브러리
+      "Chart.js": "library",
+      Recharts: "library",
+
       // 앱 개발
       "React Native": "app",
 
@@ -80,6 +84,7 @@ function Modal({ isOpen, onClose, projectData, children }) {
       Spring: "server",
       Express: "server",
       Redis: "server",
+      Supabase: "server",
 
       // 배포
       AWS: "deploy",

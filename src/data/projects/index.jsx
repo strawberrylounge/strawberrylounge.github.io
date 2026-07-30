@@ -13,11 +13,28 @@ import "./Projects.scss";
 export const projects = [
   {
     id: "project01",
-    featured: false,
-    title: "mood-diary",
-    techStack: ["React Native", "TypeScript", "HTML", "SCSS"],
-    summary: "작성 중...",
+    featured: true,
+    title: "Daily Mood Diary (웹)",
+    techStack: [
+      "HTML",
+      "SCSS",
+      "Next.js",
+      "TypeScript",
+      "Recharts",
+      "Supabase",
+      "Vercel",
+      "github",
+    ],
+    summary:
+      "매일의 기분·정서·수면·특이사항을 기록하고, 월별 통계로 추세를 시각화하는 개인용 기분 다이어리 웹앱",
     Content: Project01,
+    links: [
+      {
+        label: "live",
+        url: "https://daily-mood-diary-web-2.vercel.app/",
+        private: false,
+      },
+    ],
   },
   {
     id: "project02",
@@ -69,7 +86,7 @@ export const projects = [
   },
   {
     id: "project05",
-    featured: true,
+    featured: false,
     title: "준비 중",
     techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
     summary: "요약입니다.",

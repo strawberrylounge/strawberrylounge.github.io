@@ -108,6 +108,7 @@
             height: 26px;
             padding: 0 12px;
             border-radius: 13px;
+            font-family: $font-family-code;
             font-size: rem(14);
             text-align: center;
             line-height: 26px;
@@ -138,6 +139,10 @@
             }
             &.app {
               background: color("supernova");
+              color: color("white");
+            }
+            &.library {
+              background: color("deepblue");
               color: color("white");
             }
           }
