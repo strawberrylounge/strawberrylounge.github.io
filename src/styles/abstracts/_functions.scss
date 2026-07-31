@@ -1,6 +1,7 @@
 @use "sass:map";
 @use "sass:string";
 @use "sass:list";
+@use "sass:math";
 
 @use "./variables" as *;
 
@@ -54,4 +55,20 @@
 @function url-encode-color($color) {
   $color-string: "#{$color}"; // color 타입을 문자열로 변환
   @return str-replace($color-string, "#", "%23");
+}
+
+// 별 생성 함수
+@function multiple-box-shadow($n) {
+  $value: "#{math.random(6000)}px #{math.random(6000)}px #fff";
+  @for $i from 2 through $n {
+    $value: "#{$value}, #{math.random(6000)}px #{math.random(6000)}px #fff";
+  }
+  @return string.unquote($value);
+}
+@function multiple-box-shadow-mobile($n) {
+  $value: "#{math.random(2000)}px #{math.random(2500)}px #fff";
+  @for $i from 2 through $n {
+    $value: "#{$value}, #{math.random(2500)}px #{math.random(2500)}px #fff";
+  }
+  @return string.unquote($value);
 }
