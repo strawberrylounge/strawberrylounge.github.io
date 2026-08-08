@@ -24,7 +24,7 @@ function Home() {
   const [activeSection, setActiveSection] = useState("section01");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [typingText, setTypingText] = useState(false);
+  const [typingText, setTypingText] = useState("");
   const [showDescription, setShowDescription] = useState(false);
   const [flipWords] = useState(["Designer's", "Creative", "Technical"]);
   const [currentFlipIndex, setCurrentFlipIndex] = useState(0);
@@ -67,6 +67,7 @@ function Home() {
   useEffect(() => {
     const text = "Exploring the Web Universe";
     let index = 0;
+    let revealTimer;
 
     const timer = setInterval(() => {
       if (index <= text.length) {
@@ -75,13 +76,16 @@ function Home() {
       } else {
         clearInterval(timer);
         // 타이핑 완료 후 설명 텍스트 표시
-        setTimeout(() => {
+        revealTimer = setTimeout(() => {
           setShowDescription(true);
         }, 500);
       }
     }, 100); // 타이핑 속도 조절
 
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      clearTimeout(revealTimer);
+    };
   }, []);
 
   // section02 플립 애니메이션
@@ -189,8 +193,11 @@ function Home() {
             <span className="typing-text">{typingText}</span>
             <span className="cursor">|</span>
           </h2>
+          {/* .page-home 클래스가 붙기 전 첫 페인트에서 노출되지 않도록
+              초기 숨김 상태는 인라인 스타일로 보장 */}
           <p
             className={`section-contents-text ${showDescription ? "show" : ""}`}
+            style={{ opacity: showDescription ? 1 : 0 }}
           >
             웹 기술은 우주처럼 방대하고 다양합니다.
             <br className="pc-only" /> 그 안에서 저는 웹 디자이너로 시작해

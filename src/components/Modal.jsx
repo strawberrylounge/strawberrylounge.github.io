@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import IconClose from "./Icons/IconClose";
 import IconLock from "./Icons/IconLock";
@@ -6,41 +6,46 @@ import IconLock from "./Icons/IconLock";
 import "./Modal.scss";
 
 function Modal({ isOpen, onClose, projectData, children }) {
+  // onClose가 매 렌더마다 새로 만들어져도 아래 이펙트가 재실행되지 않도록 ref로 참조
+  const onCloseRef = useRef(onClose);
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  });
+
   // ESC 키 활성화 시 모달 닫힘 + 배경 스크롤 방지
   useEffect(() => {
+    if (!isOpen) return;
+
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        onClose();
+        onCloseRef.current();
       }
     };
 
-    let scrollY = 0;
+    // 스크롤 위치 및 기존 인라인 스타일 저장
+    const scrollY = window.scrollY;
+    const { position, top, width, overflowY } = document.body.style;
 
-    if (isOpen) {
-      // 스크롤 위치 저장
-      scrollY = window.scrollY;
+    // 배경 스크롤 방지 (body의 다른 인라인 스타일은 건드리지 않는다)
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+    document.body.style.overflowY = "hidden";
 
-      // 배경 스크롤 방지
-      document.body.style.cssText = `
-        position: fixed;
-        top: -${scrollY}px;
-        width: 100%;
-        overflow-y: hidden;
-      `;
-
-      // ESC 키 이벤트 등록
-      document.addEventListener("keydown", handleKeyDown);
-    }
+    // ESC 키 이벤트 등록
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
 
-      if (scrollY > 0) {
-        document.body.style.cssText = ``;
-        window.scrollTo(0, scrollY);
-      }
+      document.body.style.position = position;
+      document.body.style.top = top;
+      document.body.style.width = width;
+      document.body.style.overflowY = overflowY;
+
+      window.scrollTo(0, scrollY);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const { title, company, period, role, techStack, images, links, summary } =
     projectData || {};
@@ -154,9 +159,8 @@ function Modal({ isOpen, onClose, projectData, children }) {
             {links && (
               <ul className="modal-links">
                 {links.map((link, idx) => (
-                  <li>
+                  <li key={idx}>
                     <a
-                      key={idx}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"

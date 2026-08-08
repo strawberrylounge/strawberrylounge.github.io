@@ -161,6 +161,8 @@ body.page-home {
             }
             .work {
               @include flexbox(center);
+              // ::after 오버레이의 기준이 되므로 hover가 아닌 기본 상태에 둔다
+              position: relative;
               width: 400px;
               height: 400px;
               background: color(gray50);
@@ -189,7 +191,6 @@ body.page-home {
 
               // hover 시
               &:hover {
-                position: relative;
                 &::after {
                   opacity: 1;
                 }
