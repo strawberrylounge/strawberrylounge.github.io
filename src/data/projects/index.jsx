@@ -31,7 +31,7 @@ export const projects = [
     links: [
       {
         label: "live",
-        url: "https://daily-mood-diary-web-2.vercel.app/",
+        url: "https://daily-mood-diary-web.vercel.app/",
         private: false,
       },
     ],
