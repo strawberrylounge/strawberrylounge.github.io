@@ -1,6 +1,11 @@
 import img01 from "@/assets/images/project/01/01.png";
 import img02 from "@/assets/images/project/01/02.png";
 import img03 from "@/assets/images/project/01/03.png";
+import img04 from "@/assets/images/project/01/04.png";
+import img05 from "@/assets/images/project/01/05.png";
+import img05m from "@/assets/images/project/01/05m.png";
+import img06 from "@/assets/images/project/01/06.png";
+import img07 from "@/assets/images/project/01/07.png";
 
 const Project01 = () => (
   <div className="project-details">
@@ -101,27 +106,76 @@ const Project01 = () => (
           </div>
         </li>
         <li>
-          <h5>3-STEP 위저드 형태의 기록 작성 플로우</h5>
+          <h5>3-Step 위저드 형태의 기록 작성 플로우</h5>
           <p>
             기분기록지 이미지를 보시면 알 수 있듯, 하루에 작성해야 할 항목이
             적지 않습니다. 그리고 각 항목들에 대한 점수(-4 ~ +4)를 매기는 기준도
-            존재하고 있고요. 병원에서 제공하는 기록지에서는 같은 페이지 내에서는
-            기준에 대한 가이드를 볼 수는 없습니다. 별도로 다른 페이지에 있는데,
-            개인적으로 평가하다 기억이 안날 때마다 다른 페이지로 옮겨야 하는 게
+            존재하고 있고요. 병원에서 제공하는 기록지에서는 같은 페이지 내에서
+            기준에 대한 가이드를 볼 수는 없습니다. 그래서 기준이 기억이 안날
+            때마다 다른 페이지로 이동해 가이드를 찾아야 한다는 것이
             불편했습니다. 그리고 이렇게 많은 양을 한 화면에서 보여주기에는
             무리가 있다고 판단했습니다.
           </p>
           <p>
             그래서 단계를 3단계로 구성했습니다. 기록지 표를 기준으로 1단계는
             기분, 2단계는 정서 반응/의욕/생각, 3단계는 선택사항으로 기록하는
-            항목들로요. 그리고 각 항목
+            항목들로요. 그리고 각 항목의 필수항목들을 입력 했을 시에만 넘어갈 수
+            있게 유효성 검사 로직을 같이 구현했습니다.
           </p>
+          <div class="description-img">
+            <figure>
+              <img src={img04} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>구현된 UI</figcaption>
+          </div>
+          <div class="description-img">
+            <figure>
+              <img
+                src={img05}
+                alt="설명 이미지"
+                class="img img-responsive pc-only"
+              />
+              <img
+                src={img05m}
+                alt="설명 이미지"
+                class="img img-responsive m-only"
+              />
+            </figure>
+            <figcaption>
+              유효성 검사에 통과하지 못했을 경우(버튼 상태 변경 예정)
+            </figcaption>
+          </div>
         </li>
         <li>
           <h5>반응형 UI/UX: Viewport에 따라 다른 Form</h5>
-          <p></p>
-          반응형 UI: 데스크톱은 SidePanel, 모바일은 Modal로 같은 기록 폼을
-          다르게 렌더링 (useMediaQuery 커스텀 훅)
+          <p>
+            초기에는 기록하는 Form을 Modal로 구현할 생각이었습니다. 다만 위에서
+            기재한 것과 같이 3-Step으로 나눈다고 하더라도, 내용이 길어 PC에서는
+            개인적으로 답답하다는 생각이 들었습니다. 그래서 보통 노션이나 구글
+            캘린더에서도 많이 사용하듯, PC에서는 Side Panel로 그리고
+            모바일에서는 Modal로, Viewport에 따라 다른 UI를 사용할 수 있게
+            구현했습니다.
+          </p>
+          <p>
+            분기는 Custom Hook인 <code>useMediaQuery</code>를 이용해
+            처리했습니다. 이 프로젝트가 <i>CSR</i>만이 아닌 <i>SSR</i>도 혼합해
+            사용하는 <code>Next.js</code>이기 때문에{" "}
+            <i className="font-bold">Hydration Mismatch</i>를 방지하기 위해,
+            초기 상태를 서버와 동일한 값으로 시작하고 Mount 후에만 업데이트하는
+            패턴도 적용했습니다.
+          </p>
+          <div class="description-img">
+            <figure>
+              <img src={img06} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>useMediaQuery.ts 내 코드</figcaption>
+          </div>
+          <div class="description-img">
+            <figure>
+              <img src={img07} alt="설명 이미지" class="img img-responsive" />
+            </figure>
+            <figcaption>적용한 모습</figcaption>
+          </div>
         </li>
 
         <li>
@@ -136,10 +190,6 @@ const Project01 = () => (
           Recharts로 기분 Up/Down을 0 기준 대칭 막대그래프로 시각화 (custom
           tooltip, CSS 변수 기반 라이트/다크 테마 대응) ; 라인그래프로 바꿨음
         </li>
-        <li>
-          반응형 UI: 데스크톱은 SidePanel, 모바일은 Modal로 같은 기록 폼을
-          다르게 렌더링 (useMediaQuery 커스텀 훅)
-        </li>
       </ul>
     </section>
 
@@ -152,10 +202,7 @@ const Project01 = () => (
           (`score.ts`의 `getScoreColor`) — 부정/긍정 극단을 색으로 직관적으로
           인지하게 한 디자인 결정
         </li>
-        <li>
-          - 미래 날짜 기록 방지: `react-calendar`의 `tileDisabled`로 UI 레벨
-          차단 + 폼 진입 자체를 막는 이중 방어
-        </li>
+
         <li>
           - SCSS 7-1 패턴 유사 구조(abstracts/base/components/pages)로 스타일
           유지보수성 확보
@@ -178,6 +225,7 @@ const Project01 = () => (
           리마운트시켜 해결. React의 key 기반 reconciliation을 실제로 체감하고
           고친 사례라 기술 설명하기 좋아요.
         </li>
+        <li>에러 로그 페이지 연동</li>
       </ul>
     </section>
 
