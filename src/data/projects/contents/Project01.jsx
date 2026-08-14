@@ -1,5 +1,6 @@
 import img01 from "@/assets/images/project/01/01.png";
 import img02 from "@/assets/images/project/01/02.png";
+import img02m from "@/assets/images/project/01/02m.png";
 import img03 from "@/assets/images/project/01/03.png";
 import img04 from "@/assets/images/project/01/04.png";
 import img05 from "@/assets/images/project/01/05.png";
@@ -62,7 +63,16 @@ const Project01 = () => (
           </div>
           <div class="description-img">
             <figure>
-              <img src={img02} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img02}
+                alt="설명 이미지"
+                class="img img-responsive pc-only"
+              />
+              <img
+                src={img02m}
+                alt="설명 이미지"
+                class="img img-responsive m-only"
+              />
             </figure>
             <figcaption>진입 시 노출되는 홈 화면</figcaption>
           </div>
