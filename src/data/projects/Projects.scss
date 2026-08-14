@@ -67,6 +67,12 @@
           border-radius: 50%;
           background: color("supernova");
         }
+        // 리스트 홀짝 불렛 스타일 변경
+        &:nth-child(2n) {
+          &::before {
+            background: color("saturn-gold");
+          }
+        }
       }
     }
     // 설명이 들어가는 리스트
@@ -91,16 +97,6 @@
         img.img-responsive {
           @include mobile {
             width: auto;
-          }
-        }
-      }
-    }
-    // 리스트 홀짝 불렛 스타일 변경
-    &:nth-child(2n) {
-      ul {
-        li {
-          &::before {
-            background: color("saturn-gold");
           }
         }
       }
