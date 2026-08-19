@@ -7,6 +7,22 @@ import img05 from "@/assets/images/project/01/05.png";
 import img05m from "@/assets/images/project/01/05m.png";
 import img06 from "@/assets/images/project/01/06.png";
 import img07 from "@/assets/images/project/01/07.png";
+import img08 from "@/assets/images/project/01/08.png";
+import img09 from "@/assets/images/project/01/09.png";
+import img10 from "@/assets/images/project/01/10.png";
+import img10m from "@/assets/images/project/01/10m.png";
+import img11 from "@/assets/images/project/01/11.png";
+import img11m from "@/assets/images/project/01/11m.png";
+import img12 from "@/assets/images/project/01/12.png";
+import img13 from "@/assets/images/project/01/13.png";
+import img13m from "@/assets/images/project/01/13m.png";
+import img14 from "@/assets/images/project/01/14.png";
+import img14m from "@/assets/images/project/01/14m.png";
+import img15 from "@/assets/images/project/01/15.png";
+import img16 from "@/assets/images/project/01/16.png";
+import img17 from "@/assets/images/project/01/17.png";
+import img18 from "@/assets/images/project/01/18.png";
+import img19 from "@/assets/images/project/01/19.png";
 
 const Project01 = () => (
   <div className="project-details">
@@ -18,7 +34,7 @@ const Project01 = () => (
           href="https://www.snubh.org/dh/main/index.do?DP_CD=DCD27&MENU_ID=002005"
           target="_blank"
           rel="noopener noreferrer"
-          class="link"
+          className="link"
         >
           기분기록지
         </a>
@@ -28,8 +44,8 @@ const Project01 = () => (
         저는 뭐든지 기록으로 남기는 것을 좋아합니다. 초등학교 5학년 때부터
         지금까지 꾸준히 일기를 쓸 정도로요. 기분을 기록하는 어플들―아이폰의 기본
         기능, 혹은 앱스토어 순위 상위권에 있는―을 여러가지 사용해보기도
-        했습니다. 그러다 우연히 지인이 기분기록지라는 것을 알려주었고, 일 년정도
-        사용을 해보게 되었습니다. 매일 꾸준히 기록하면 한 달동안 내 기분이
+        했습니다. 그러다 우연히 지인이 기분기록지라는 것을 알려주었고, 일 년
+        정도 사용을 해보게 되었습니다. 매일 꾸준히 기록하면 한 달동안 내 기분이
         어떻게 변화하는지 추적하기 용이했습니다. 그리고 전문가 분들이 만든
         것이라 그런지 단순히 좋음, 나쁨 같은 기준이 아니라 기준에 맞춰서 평가할
         수 있다는 점이 가장 좋았습니다. 실제로 이걸 사용하면서 저는 제 적정
@@ -55,23 +71,27 @@ const Project01 = () => (
       <ul className="description-list">
         <li>
           <h5>캘린더 기반의 UI로 사용 방법을 직관적으로 표현</h5>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img01} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img01}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>병원에서 제공하는 기분기록지</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
               <img
                 src={img02}
                 alt="설명 이미지"
-                class="img img-responsive pc-only"
+                className="img img-responsive pc-only"
               />
               <img
                 src={img02m}
                 alt="설명 이미지"
-                class="img img-responsive m-only"
+                className="img img-responsive m-only"
               />
             </figure>
             <figcaption>진입 시 노출되는 홈 화면</figcaption>
@@ -94,7 +114,7 @@ const Project01 = () => (
           <p>
             1&#41; 미래 날짜에 기록하는 것을 방지하기 위해{" "}
             <code>react-calendar</code>의 <code>tileDisabled</code>에 날짜를
-            검사하는 함수 &nbsp;<code>isFutureDate</code>를 적용했습니다. 추가로
+            검사하는 함수 <code>isFutureDate</code>를 적용했습니다. 추가로
             CSS에서는 라이브러리가 비활성화된 tile에 붙이는 disabled 속성
             셀렉터&nbsp;
             <code>.react-calendar__tile[disabled]</code>에{" "}
@@ -108,9 +128,13 @@ const Project01 = () => (
             날짜의 기록은 표기되지 않습니다. 추후 조회 범위를 넓혀 개선할
             예정입니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img03} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img03}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>커스텀한 부분</figcaption>
           </div>
@@ -120,11 +144,10 @@ const Project01 = () => (
           <p>
             기분기록지 이미지를 보시면 알 수 있듯, 하루에 작성해야 할 항목이
             적지 않습니다. 그리고 각 항목들에 대한 점수<i>(-4 ~ +4)</i>를 매기는
-            기준도 존재하고 있고요. 병원에서 제공하는 기록지에서는 같은 페이지
-            내에서 기준에 대한 가이드를 볼 수는 없습니다. 그래서 기준이 기억이
-            안날 때마다 다른 페이지로 이동해 가이드를 찾아야 한다는 것이
-            불편했습니다. 그리고 이렇게 많은 양을 한 화면에서 보여주기에는
-            무리가 있다고 판단했습니다.
+            기준도 존재하고 있고요. 하지만 기분기록지에서는 같은 페이지 내에서
+            기준을 확인할 수 없습니다. 그래서 내용이 기억이 안날 때마다 다른
+            페이지로 이동해 찾아야 한다는 것이 불편했습니다. 그리고 이렇게 많은
+            양을 한 화면에서 보여주기에는 무리가 있다고 판단했습니다.
           </p>
           <p>
             그래서 단계를 3단계로 구성했습니다. 기록지 표를 기준으로 1단계는
@@ -132,28 +155,30 @@ const Project01 = () => (
             항목들로요. 그리고 각 항목의 필수항목들을 입력 했을 시에만 넘어갈 수
             있게 유효성 검사 로직을 같이 구현했습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img04} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img04}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>구현된 UI</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
               <img
                 src={img05}
                 alt="설명 이미지"
-                class="img img-responsive pc-only"
+                className="img img-responsive pc-only"
               />
               <img
                 src={img05m}
                 alt="설명 이미지"
-                class="img img-responsive m-only"
+                className="img img-responsive m-only"
               />
             </figure>
-            <figcaption>
-              유효성 검사에 통과하지 못했을 경우(버튼 상태 변경 예정)
-            </figcaption>
+            <figcaption>유효성 검사에 통과하지 못했을 경우</figcaption>
           </div>
         </li>
         <li>
@@ -170,24 +195,31 @@ const Project01 = () => (
             분기는 Custom Hook인 <code>useMediaQuery</code>를 이용해
             처리했습니다. 이 프로젝트가 <i>CSR</i>만이 아닌 <i>SSR</i>도 혼합해
             사용하는 <code>Next.js</code>이기 때문에{" "}
-            <i className="font-bold">Hydration Mismatch</i>를 방지하기 위해,
-            초기 상태를 서버와 동일한 값으로 시작하고 Mount 후에만 업데이트하는
-            패턴도 적용했습니다.
+            <i className="font-bold">Hydration Mismatch</i>를 미연에 방지하기
+            위해, 초기 상태를 서버와 동일한 값으로 시작하고 Mount 후에만
+            업데이트하는 패턴도 적용했습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img06} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img06}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>useMediaQuery.ts 내 코드</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img07} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img07}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>적용한 모습</figcaption>
           </div>
         </li>
-
         <li>
           <h5>조회/수정/작성을 하나의 상태 머신으로 관리</h5>
           <p>
@@ -207,7 +239,7 @@ const Project01 = () => (
             됩니다. 그만큼 조건문도 복잡해지고요. 그래서 화면의 상태를{" "}
             <i>loading, view, edit, create</i> 중 반드시 하나만 가질 수 있는
             단일 값<i>(mode)</i>으로 묶었습니다. 언제나 정확히 하나의 상태만
-            참이 되기 때문에, 불가능한 조합 자체가 만들어지지 않습니다.
+            참이 되기 때문에, 불가능한 조합 자체가 만들어지지 않게요.
           </p>
           <p>
             상태 전이는 이렇게 정리했습니다; 패널이 열리거나 날짜가 바뀌면
@@ -231,24 +263,257 @@ const Project01 = () => (
             있습니다. 그래서 <code>useEffect</code>의 Cleanup에서 플래그를 세워,
             이미 지나간 요청의 응답은 상태에 반영하지 않도록 처리했습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              이미지 추가 예정(mode, useeffect의 cleanup 함수 코드)
+              <img
+                src={img08}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
+            <figcaption>케이스를 type으로 분리(중간 코드 생략)</figcaption>
+          </div>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img09}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
+            </figure>
+            <figcaption>useEffect 내 코드</figcaption>
           </div>
         </li>
         <li>
-          월별 통계 페이지: Supabase에서 가져온 raw 데이터를 클라이언트에서 월
-          단위로 집계, 전월 대비 증감 표시
+          <h5>월말 평가</h5>
+          <p>
+            기분기록지에 있던 월말 평가 문항을 웹으로 옮기면서, 아날로그 기록
+            방식에는 없던 플로우를 새로 생각해야 했습니다. 1&#41; 언제 평가할 수
+            있는지 2&#41; 이미 평가한 달이면 어떻게 보여줄지 같은 상태들을
+            다루는 방식을 주로 신경 썼습니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img10}
+                alt="설명 이미지"
+                className="img img-responsive pc-only"
+              />
+              <img
+                src={img10m}
+                alt="설명 이미지"
+                className="img img-responsive m-only"
+              />
+            </figure>
+            <figcaption>월말 평가 화면</figcaption>
+          </div>
+          <p>
+            우선, <i>Server</i>와 <i>Client</i>의 관심사를 분리했습니다.{" "}
+            <code>/assessment</code> 페이지는 URL의 month 쿼리 파라미터로 어떤
+            달을 평가할지 결정합니다. 이 파라미터를 읽는 방법은 두 가지인데,{" "}
+            <code>useSearchParams()</code>을 <code>Suspense</code>로 감싸는
+            방식보다는 파일을 두 개―<code>page.tsx</code>와{" "}
+            <code>AssessmentForm.tsx</code>―로 나누어 파라미터를 읽는 부분과
+            인터랙션을 담당하는 부분의 책임을 분리하는 방식을 사용했습니다.
+            테스트를 하거나 재사용하기 쉽게 자식 컴포넌트가 더 단순한 방식으로
+            쓰여지는 것이 낫다고 판단했기 때문입니다. 이 방식을 사용하면
+            fallback UI를 따로 설계할 필요가 없기도 하고요.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img11}
+                alt="설명 이미지"
+                className="img img-responsive pc-only"
+              />
+              <img
+                src={img11m}
+                alt="설명 이미지"
+                className="img img-responsive m-only"
+              />
+            </figure>
+            <figcaption>Directory 구조</figcaption>
+          </div>
+          <p>
+            두 번째로, 월말 평가는 말 그대로 한 달을 다 보내고 나서 돌아보는
+            기능이라 아직 끝나지 않은 달은 평가할 수 없도록 막아야 했습니다.{" "}
+            <code>isAssessableMonth</code>로 URL에 담긴 달이 이미 끝난 달인지
+            검사하고, 형식 자체가 잘못된 경우는 <code>isValidMonthKey</code>로
+            걸러냈습니다. 둘 중 하나라도 걸리면 폼 대신 &lsquo;아직 평가할 수
+            없어요&rsquo; 안내 화면을 보여줍니다.
+          </p>
+          <p>
+            그리고 하루를 기록하는 Form과 같은 패턴으로 평가 Form이 작성과
+            수정을 겸하게 만들었습니다. 평가하려는 달에 이미 저장된 평가가
+            있는지는 진입 시점엔 알 수 없기 때문에 <code>monthKey</code>가
+            정해지면 먼저 기존 평가를 조회하고 → 있으면 <code>answers</code>와{" "}
+            <code>existingId</code>를 채워 넣어 그대로 이어서 수정할 수 있게
+            하고, 없으면 빈 폼으로 시작합니다. <code>existingId</code>의 유무에
+            따라 버튼 라벨(<i>제출하기</i>/<i>수정하기</i>)과 저장 로직이
+            자연스럽게 갈리도록 만든 것입니다.
+          </p>
+          <p>
+            마지막으로, <code>isAssessableMonth</code>는 &lsquo;오늘
+            날짜&rsquo;를 기준으로 판단하는 로직인데, 서버에서 렌더링한 시점의
+            오늘과 클라이언트에서 다시 계산한 오늘이 정확히 같다는 보장이 없어{" "}
+            <i className="font-bold">Hydration Mismatch</i>가 날 가능성이
+            있었습니다. 그래서 이 판별을 <code>useEffect</code> 안, 즉 마운트된
+            이후에만 실행하도록 했습니다. 캘린더 조회 로직에서 쓴{" "}
+            <code>useMediaQuery</code> 패턴과 같은 이유입니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img12}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
+            </figure>
+            <figcaption>작성된 코드</figcaption>
+          </div>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img13}
+                alt="설명 이미지"
+                className="img img-responsive pc-only"
+              />
+              <img
+                src={img13m}
+                alt="설명 이미지"
+                className="img img-responsive m-only"
+              />
+            </figure>
+            <figcaption>평가할 수 없을 때</figcaption>
+          </div>
         </li>
+
         <li>
-          Recharts로 기분 Up/Down을 0 기준 대칭 막대그래프로 시각화 (custom
-          tooltip, CSS 변수 기반 라이트/다크 테마 대응) ; 라인그래프로 바꿨음
+          <h5>통계 페이지: 누적 데이터를 볼 수 없었던 한계 보완</h5>
+          <p>
+            기분기록지는 한 달 동안의 변화는 한눈에 보기 쉬웠지만, 두 달 이상
+            데이터가 쌓였을 때 이를 비교해서 볼 방법은 없었습니다. 그래서 raw
+            기록을 <code>Supabase</code>에서 받아와 월 단위로 집계하고, 항목별로
+            전월 대비 증감까지 보여주도록 만들었습니다. 통계 페이지를 구현하면서
+            가장 신경 썼던 점들 몇 가지를 설명하겠습니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img14}
+                alt="설명 이미지"
+                className="img img-responsive pc-only"
+              />
+              <img
+                src={img14m}
+                alt="설명 이미지"
+                className="img img-responsive m-only"
+              />
+            </figure>
+            <figcaption>통계(stats/page.tsx) 페이지</figcaption>
+          </div>
+          <p>
+            1&#41; <code>Supabase</code>에는 하루 단위의 raw 기록만 저장되어
+            있어서, 월별로 보여주려면 어딘가에서 집계가 필요했습니다. 그리고
+            매번 서버에 월별로 요청하는 대신, 최근 1년치 기록을 한 번에 받아온
+            뒤 클라이언트에서 <code>record_date</code>(DB Column)를 기준으로
+            월별로 묶어 평균과 카운트를 계산하는 방식을 선택했습니다. 기간
+            탭(1개월/3개월/6개월/1년)을 눌렀을 때 매번 재조회하지 않고, 이미
+            받아둔 데이터를 원하는 기간만큼 잘라서 보여주기 위해서입니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img15}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
+            </figure>
+            <figcaption>
+              일 년치 데이터를 받아 클라이언트 사이드에서 집계하는 코드
+            </figcaption>
+          </div>
+          <p>
+            2&#41; 일별 기록과 월말 자가평가 점수는 서로 다른 테이블에 저장돼
+            있어서, <code>Promise.all</code>로 두 요청을 병렬로 보낸 뒤 결과를
+            합쳐 하나의 월별 통계로 만들었습니다. 요청 도중 컴포넌트가
+            언마운트되거나 새 요청이 들어간 경우에는, 늦게 도착한 이전 응답이
+            상태를 덮어쓰지 않도록 플래그로 막았습니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img16}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
+            </figure>
+            <figcaption>데이터 조회 요청하는 코드</figcaption>
+          </div>
+          <p>
+            3&#41; 월말평가는 이미 평가를 마쳤거나 그 달이 끝난 경우에만
+            노출되도록 분기해서, 아직 평가할 수 없는 진행 중인 달에는 불필요한
+            UI가 뜨지 않게 했습니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img17}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
+            </figure>
+            <figcaption>해당 조건에서만 UI 노출하는 코드</figcaption>
+          </div>
+          <p>
+            4&#41; 가장 위쪽에는 일별 기분 변화를 선으로 보여주는 그래프를
+            구현했습니다.
+          </p>
+          <p>
+            그래프를 구현하면서 <i>혼재 상태</i>를 표현하는 방식에 대해 가장ㅇ
+            고민했습니다. 기분기록지에서는 하루에 최고 기분과 최저 기분을 둘 다
+            적을 수 있는데, 라인 그래프는 한 날짜에 값을 하나만 그릴 수
+            있습니다. 그래서 혼재일은 최고~최저의 중앙값을 선이 지나는 값으로
+            쓰고, 그 위아래로 실제 범위를 <code>Recharts</code>의{" "}
+            <code>ErrorBar</code>로 그려 넣었습니다. 점 모양도 일반일은 원,
+            혼재일은 마름모로 달리해서 그래프만 봐도 어떤 날이 혼재 상태였는지
+            구분되게 했습니다. 툴팁도 같은 기준으로 분기해서, 일반일은 그날의
+            기분 점수를, 혼재일 은 최고/최저 값과 함께 &lsquo;혼재
+            상태&rsquo;라는 표시를 보여지게 했습니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img18}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
+            </figure>
+            <figcaption>혼재일을 별도로 표기한 그래프</figcaption>
+          </div>
+          <p>
+            그리고 기록이 없는 날은 x축 간격이 실제 날짜와 어긋나지 않도록 빈
+            값으로 채워두었는데, 그러면 기록과 기록 사이 구간에서 선이 끊겨
+            보이는 문제가 있었습니다. 그래서 기록이 있는 두 날짜 사이가 하루
+            이상 비어 있으면 그 구간만 선형으로 보간해 옅은 점선으로 이어주고,
+            실제 기록 구간은 실선으로 그려 두 구간이 시각적으로는 이어지면서도
+            구분되게 처리했습니다.
+          </p>
+          <div className="description-img">
+            <figure>
+              <img
+                src={img19}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
+            </figure>
+            <figcaption>변경 전과 변경 후</figcaption>
+          </div>
         </li>
       </ul>
     </section>
 
-    <section>
+    <section style={{ display: "none" }}>
       <h4>❗ 작업 전 고려한 점</h4>
       <ul>
         <li>CSS 모듈과 전역 분리</li>
@@ -257,44 +522,35 @@ const Project01 = () => (
           (`score.ts`의 `getScoreColor`) — 부정/긍정 극단을 색으로 직관적으로
           인지하게 한 디자인 결정
         </li>
-
         <li>
           - SCSS 7-1 패턴 유사 구조(abstracts/base/components/pages)로 스타일
           유지보수성 확보
         </li>
-        <li>
-          Recharts에서 하나의 축(0 기준)에 상승/하강 막대를 대칭으로 그리기
-          위한 ReferenceLine + domain/ticks 커스터마이징
-        </li>
       </ul>
     </section>
 
     <section>
-      <h4>문제 해결</h4>
-      <ul>
-        <li>
-          stale 컴포넌트 마운트 버그: 기록 작성 완료 후 같은 RecordForm 컴포넌트
-          인스턴스가 재사용되면서 이전 상태가 남아있는 문제 발생 → React가 같은
-          위치의 같은 타입 엘리먼트는 재조정(reconciliation) 시 인스턴스를
-          그대로 유지한다는 점이 원인이었고, panelKey를 도입해 key prop으로 강제
-          리마운트시켜 해결. React의 key 기반 reconciliation을 실제로 체감하고
-          고친 사례라 기술 설명하기 좋아요.
-        </li>
-        <li>에러 로그 페이지 연동</li>
-      </ul>
+      <h4>🛠️ 문제 해결</h4>
+      <p>
+        <a
+          href="https://app.notion.com/p/strawberrylounge/b605f6b76e7b40eb89931d7c042c2954"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link"
+        >
+          에러 로그 바로 가기
+        </a>
+      </p>
     </section>
 
     <section>
-      <h4>추후 업데이트 예정</h4>
+      <h4>🗓️ 업데이트 예정</h4>
       <ul>
-        <li>
-          stale 컴포넌트 마운트 버그: 기록 작성 완료 후 같은 RecordForm 컴포넌트
-          인스턴스가 재사용되면서 이전 상태가 남아있는 문제 발생 → React가 같은
-          위치의 같은 타입 엘리먼트는 재조정(reconciliation) 시 인스턴스를
-          그대로 유지한다는 점이 원인이었고, panelKey를 도입해 key prop으로 강제
-          리마운트시켜 해결. React의 key 기반 reconciliation을 실제로 체감하고
-          고친 사례라 기술 설명하기 좋아요.
-        </li>
+        <li>모바일에서의 그래프 UI 개선</li>
+        <li>UX 개선(유효성 검사 통과 못했을 경우 다음 버튼 비활성화 등...)</li>
+        <li>과거(3개월 전~) 기록 조회 기능 추가</li>
+        <li>특이사항(생리, 수면 시간)이 기분에 미치는 영향을 시각화</li>
+        <li>정서반응/의욕/생각 데이터의 시각화</li>
       </ul>
     </section>
   </div>

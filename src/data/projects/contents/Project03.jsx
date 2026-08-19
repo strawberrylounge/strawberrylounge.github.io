@@ -48,13 +48,21 @@ const Project03 = () => (
           </p>
           <div class="description-img">
             <figure>
-              <img src={img01} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img01}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>온라인 강의 모듈을 위한 Tiles 정의</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img02} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img02}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>페이지별로 필요한 리소스만 동적 로드</figcaption>
           </div>
@@ -84,24 +92,28 @@ const Project03 = () => (
             알고 있는 다른 도구의 멘탈 모델과 연결 지어 학습하는 것이 효과적인
             접근법이라는 것을 배웠습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
               <img
                 src={img03}
                 alt="설명 이미지"
-                class="img img-responsive pc-only"
+                className="img img-responsive pc-only"
               />
               <img
                 src={img03m}
                 alt="설명 이미지"
-                class="img img-responsive m-only"
+                className="img img-responsive m-only"
               />
             </figure>
             <figcaption>CSS를 적용한 모습</figcaption>
           </div>
           <div className="description-img">
             <figure>
-              <img src={img04} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img04}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>사용된 코드</figcaption>
           </div>
@@ -140,29 +152,37 @@ const Project03 = () => (
             두어야만 파라미터 기반 분기 렌더링이 정상적으로 동작한다는 것을
             확인하고 구조를 맞췄습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img05} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img05}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>icons.jsp 내에 SVG 코드들을 정리</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img06} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img06}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>실제 사용하고자 하는 페이지에서 불러오기</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
               <img
                 src={img07}
                 alt="설명 이미지"
-                class="img img-responsive pc-only"
+                className="img img-responsive pc-only"
               />
               <img
                 src={img07m}
                 alt="설명 이미지"
-                class="img img-responsive m-only"
+                className="img img-responsive m-only"
               />
             </figure>
             <figcaption>리소스를 알맞은 위치에 정리</figcaption>
@@ -207,21 +227,33 @@ const Project03 = () => (
             것이고, 여기에 CSS transition을 더해 값이 바뀔 때 도넛이 자연스럽게
             차오르는 애니메이션 얻을 수 있었습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img08} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img08}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>progress.jsp 내 SVG 코드</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img09} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img09}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>그래프를 불러와 적용</figcaption>
           </div>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img10} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img10}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>CSS Transform이 적용되고 있는 모습</figcaption>
           </div>

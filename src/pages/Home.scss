@@ -199,6 +199,16 @@ body.page-home {
                 }
               }
               // 썸네일
+              // 1) Daily Mood Diary (Web)
+              &:first-child {
+                background: {
+                  position: center;
+                  size: 80%;
+                  image: url("#{$img-project}01/thumbnail.png");
+                  color: color("white");
+                  repeat: no-repeat;
+                }
+              }
               // 2) 푸르넷 예비교사 온라인 교육 (예시. 옮겨야 함.)
               &:nth-child(2) {
                 background: {

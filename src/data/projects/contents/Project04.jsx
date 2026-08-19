@@ -86,17 +86,17 @@ const Project04 = () => (
             컸기 때문입니다. 그래서 프론트 담당자인 제가 기준을 세워 혼선이 없게
             만들어야 한다고 생각했습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
               <img
                 src={img01}
                 alt="설명 이미지"
-                class="img img-responsive pc-only"
+                className="img img-responsive pc-only"
               />
               <img
                 src={img01m}
                 alt="설명 이미지"
-                class="img img-responsive m-only"
+                className="img img-responsive m-only"
               />
             </figure>
             <figcaption>
@@ -110,17 +110,17 @@ const Project04 = () => (
             해당 파일<code>(_maintenance.scss)</code>을 스타일 import 순서상
             가장 마지막에 배치해, 자연스럽게 우선순위를 확보하도록 구성했습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
               <img
                 src={img02}
                 alt="설명 이미지"
-                class="img img-responsive pc-only"
+                className="img img-responsive pc-only"
               />
               <img
                 src={img02m}
                 alt="설명 이미지"
-                class="img img-responsive m-only"
+                className="img img-responsive m-only"
               />
             </figure>
             <figcaption>해당 파일들은 sub.css로 컴파일 됨</figcaption>
@@ -132,9 +132,13 @@ const Project04 = () => (
             파일 상단에 기준을 명시해, 향후 작업자가 과거의 저처럼 맥락 없이
             헤매지 않도록 했습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img03} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img03}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>파일 내 작성한 규칙들</figcaption>
           </div>
@@ -146,9 +150,13 @@ const Project04 = () => (
             기록하도록 규칙화해, 신뢰하기 어려운 레거시 커밋 히스토리를 대신할
             로그를 만들었습니다.
           </p>
-          <div class="description-img">
+          <div className="description-img">
             <figure>
-              <img src={img04} alt="설명 이미지" class="img img-responsive" />
+              <img
+                src={img04}
+                alt="설명 이미지"
+                className="img img-responsive"
+              />
             </figure>
             <figcaption>작성 예시</figcaption>
           </div>
