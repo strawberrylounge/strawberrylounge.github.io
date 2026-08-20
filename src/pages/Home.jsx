@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { MotionPathPlugin } from "gsap/all";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import useEmblaCarousel from "embla-carousel-react";
 
 import Modal from "../components/Modal";
 import Form from "../components/Form";
@@ -30,6 +31,35 @@ function Home() {
   const [currentFlipIndex, setCurrentFlipIndex] = useState(0);
 
   const pathRef = useRef(null);
+
+  // section03 works 슬라이드
+  // 모바일: 카드 1개 + 양옆 살짝 피크(center align) / PC: 3개 꽉 채움(start align)
+  const worksMobileQuery = useRef(
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 699px)")
+      : null
+  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: worksMobileQuery.current?.matches ? "center" : "start",
+    containScroll: "trimSnaps",
+    slidesToScroll: "auto",
+  });
+
+  useEffect(() => {
+    const mql = worksMobileQuery.current;
+    if (!emblaApi || !mql) return;
+
+    const applyAlign = () => {
+      emblaApi.reInit({
+        align: mql.matches ? "center" : "start",
+        containScroll: "trimSnaps",
+        slidesToScroll: "auto",
+      });
+    };
+
+    mql.addEventListener("change", applyAlign);
+    return () => mql.removeEventListener("change", applyAlign);
+  }, [emblaApi]);
 
   // body 클래스 설정 (useGSAP보다 먼저 실행되도록 useLayoutEffect 사용)
   useLayoutEffect(() => {
@@ -245,20 +275,24 @@ function Home() {
       {/* section03: works */}
       <section className="section section03">
         <div className="inner">
-          <ul className="works">
-            {featuredProjects.map((project, idx) => (
-              <li
-                key={project.id}
-                className={`work work0${idx + 1}`}
-                onClick={() => openModal(project)}
-              >
-                <div className="work-title">{project.title}</div>
-              </li>
-            ))}
-          </ul>
-          <Link to="/works" className="btn btn-more">
+          <div className="works-slider">
+            <div className="works-viewport" ref={emblaRef}>
+              <div className="works-container">
+                {featuredProjects.map((project, idx) => (
+                  <div
+                    key={project.id}
+                    className={`work work0${idx + 1}`}
+                    onClick={() => openModal(project)}
+                  >
+                    <div className="work-title">{project.title}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* <Link to="/works" className="btn btn-more">
             더 보기
-          </Link>
+          </Link> */}
         </div>
       </section>
       {/* section04: career */}

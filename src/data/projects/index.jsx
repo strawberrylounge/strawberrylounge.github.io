@@ -1,6 +1,6 @@
 /**
  * 프로젝트 데이터
- * featured: true → Home section03에 노출 (최대 3개)
+ * featured: true → Home section03에 노출 (6개 이상이면 /works 페이지로 분리 예정)
  * Content      → Modal children으로 렌더링될 컴포넌트
  */
 import Project01 from "./contents/Project01";
@@ -94,4 +94,4 @@ export const projects = [
   },
 ];
 
-export const featuredProjects = projects.filter((p) => p.featured).slice(0, 3);
+export const featuredProjects = projects.filter((p) => p.featured);
