@@ -89,9 +89,24 @@ export const projects = [
     id: "project02",
     featured: true,
     title: "tarot-shuffle",
-    techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
-    summary: "요약입니다.",
+    techStack: [
+      "HTML",
+      "SCSS",
+      "JavaScript",
+      "Vue.js",
+      "three.js",
+      "Vercel",
+      "github",
+    ],
+    summary: "준비 중입니다.",
     Content: Project02,
+    links: [
+      {
+        label: "live",
+        url: "https://tarot-shuffle.vercel.app/",
+        private: false,
+      },
+    ],
   },
 ];
 

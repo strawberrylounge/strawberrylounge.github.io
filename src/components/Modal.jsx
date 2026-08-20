@@ -79,6 +79,7 @@ function Modal({ isOpen, onClose, projectData, children }) {
       // 라이브러리
       "Chart.js": "library",
       Recharts: "library",
+      "three.js": "library",
 
       // 앱 개발
       "React Native": "app",
