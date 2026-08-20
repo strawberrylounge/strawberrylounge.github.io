@@ -36,14 +36,15 @@ export const projects = [
       },
     ],
   },
-  {
-    id: "project02",
-    featured: false,
-    title: "tarot-shuffle",
-    techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
-    summary: "요약입니다.",
-    Content: Project02,
-  },
+  // 임시로 순서 4번째로 변경
+  // {
+  //   id: "project02",
+  //   featured: false,
+  //   title: "tarot-shuffle",
+  //   techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
+  //   summary: "요약입니다.",
+  //   Content: Project02,
+  // },
   {
     id: "project03",
     featured: true,
@@ -85,9 +86,9 @@ export const projects = [
     ],
   },
   {
-    id: "project05",
-    featured: false,
-    title: "준비 중",
+    id: "project02",
+    featured: true,
+    title: "tarot-shuffle",
     techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
     summary: "요약입니다.",
     Content: Project02,

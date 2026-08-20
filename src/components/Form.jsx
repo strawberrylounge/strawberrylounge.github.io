@@ -271,7 +271,7 @@ const Form = () => {
     setIsLoading(true);
 
     emailjs
-      .sendForm("service_9feao3e", "template_hdhlukh", form.current, {
+      .sendForm("service_ascwrk7", "template_hdhlukh", form.current, {
         publicKey: "flYKELUB2mHkRKcfq",
       })
       .then((res) => {
