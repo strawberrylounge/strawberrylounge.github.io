@@ -36,8 +36,8 @@ function Home() {
   // 모바일: 카드 1개 + 양옆 살짝 피크(center align) / PC: 3개 꽉 채움(start align)
   const worksMobileQuery = useRef(
     typeof window !== "undefined"
-      ? window.matchMedia("(max-width: 699px)")
-      : null
+      ? window.matchMedia("(max-width: 1279px)")
+      : null,
   );
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: worksMobileQuery.current?.matches ? "center" : "start",
@@ -507,7 +507,7 @@ function Home() {
                   <span className="sr-only">Linkedin</span>
                 </Link>
               </div>
-              <div className="sns sns-medium">
+              <div className="sns sns-medium" style={{ display: "none" }}>
                 <Link
                   to="https://medium.com/@raspberrylounge"
                   target="_blank"

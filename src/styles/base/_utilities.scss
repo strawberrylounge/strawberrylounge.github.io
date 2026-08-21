@@ -67,6 +67,9 @@ $name-map: (
   height: 100%;
   margin: 0 auto;
   padding: 0 $spacing;
+  @include tablet {
+    max-width: $inner-width-tablet;
+  }
   @include mobile {
     max-width: $inner-width-mobile;
     padding: 0 $spacing-mobile;
@@ -188,15 +191,15 @@ $name-map: (
 ============================================================= */
 // display
 .pc-only {
-  // 태블릿 포함
-  display: none;
-  @include tablet-up {
-    display: block;
+  display: block;
+  @include mobile-tablet {
+    display: none;
   }
 }
 .m-only {
+  // 태블릿 포함
   display: none;
-  @include mobile {
+  @include mobile-tablet {
     display: block;
   }
 }

@@ -32,6 +32,9 @@ body.page-home {
               0 0 20px rgba(255, 255, 255, 0.3),
               0 0 40px rgba(255, 255, 255, 0.15),
               0 0 60px rgba(255, 255, 255, 0.05);
+            @include tablet {
+              font-size: rem(52);
+            }
             @include mobile {
               font-size: rem(32);
             }
@@ -41,11 +44,11 @@ body.page-home {
             font-weight: 400;
             font-size: rem(22);
             color: color(gray300);
+            line-height: 1.65;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-            // line-height: 1.6;
             word-break: keep-all;
             @include mobile {
-              margin-top: 16px;
+              margin-top: 24px;
               font-size: rem(14);
             }
           }
@@ -88,15 +91,28 @@ body.page-home {
       }
       &.section02 {
         .inner {
+          p.section-contents-text {
+            @include tablet {
+              max-width: 860px;
+              line-height: 1.65;
+            }
+            @include mobile {
+              line-height: 1.7;
+            }
+          }
           h2.section-title {
             display: inline-block;
             .flip-container {
               position: relative;
               display: inline-block;
               min-width: 420px;
-              height: 120px;
+              height: 115px;
               vertical-align: bottom;
               overflow: hidden;
+              @include tablet {
+                min-width: 300px;
+                height: 84px;
+              }
               @include mobile {
                 min-width: 180px;
                 height: 50px;
@@ -115,6 +131,9 @@ body.page-home {
                   transform: translate(-50%, 100%);
                   opacity: 0;
                   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                  @include tablet {
+                    font-size: rem(52);
+                  }
                   @include mobile {
                     font-size: rem(32);
                   }
@@ -148,6 +167,7 @@ body.page-home {
       &.section03 {
         position: relative;
         .inner {
+          overflow: hidden;
           @include mobile {
             width: 100%;
           }
@@ -285,6 +305,9 @@ body.page-home {
               max-width: 1150px;
               text-align: left;
               transform: translateX(-50%);
+              @include tablet {
+                max-width: 980px;
+              }
               .career {
                 @include flexbox();
                 gap: 24px;
