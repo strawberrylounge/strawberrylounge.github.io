@@ -98,7 +98,7 @@ export const projects = [
       "Vercel",
       "github",
     ],
-    summary: "준비 중입니다.",
+    summary: "타로 카드를 뽑을 수 있는 웹앱",
     Content: Project02,
     links: [
       {
