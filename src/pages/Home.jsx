@@ -397,7 +397,7 @@ function Home() {
             <div className="career career01">
               {/* <Planet type={"earth"} /> */}
               <div className="career-info">
-                <div className="period">2016.08 ~ 2017.10</div>
+                <div className="period">2016.08 ~ 2017.11</div>
                 <div className="company">아이포터</div>
                 <span className="role">웹 디자이너</span>
               </div>
@@ -432,7 +432,7 @@ function Home() {
             <div className="career career04">
               {/* <Planet type={"saturn"} /> */}
               <div className="career-info">
-                <div className="period">2020.02 ~ 2021.05</div>
+                <div className="period">2020.02 ~ 2021.06</div>
                 <div className="company">어썸코드</div>
                 <span className="role">선임 퍼블리셔</span>
                 <div className="description">
