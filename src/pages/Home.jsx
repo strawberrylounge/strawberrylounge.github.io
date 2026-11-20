@@ -278,10 +278,11 @@ function Home() {
           <div className="works-slider">
             <div className="works-viewport" ref={emblaRef}>
               <div className="works-container">
-                {featuredProjects.map((project, idx) => (
+                {featuredProjects.map((project) => (
                   <div
                     key={project.id}
-                    className={`work work0${idx + 1}`}
+                    // project.id("project05") → 클래스 "work05" (진열 순서와 무관하게 id 기준)
+                    className={`work ${project.id.replace("project", "work")}`}
                     onClick={() => openModal(project)}
                   >
                     <div className="work-title">{project.title}</div>

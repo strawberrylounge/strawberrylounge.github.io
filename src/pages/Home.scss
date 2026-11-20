@@ -214,8 +214,8 @@ body.page-home {
                 opacity: 1;
               }
             }
-            // 썸네일
-            // 1) Daily Mood Diary (Web)
+            // 썸네일 (클래스 번호 = data/projects의 project id 번호, 진열 순서와 무관)
+            // project01) Daily Mood Diary (Web)
             &.work01 {
               background: {
                 position: center;
@@ -225,8 +225,11 @@ body.page-home {
                 repeat: no-repeat;
               }
             }
-            // 2) 푸르넷 예비교사 온라인 교육 (예시. 옮겨야 함.)
+            // project02) 타로 셔플
             &.work02 {
+            }
+            // project03) 푸르넷 예비교사 온라인 교육
+            &.work03 {
               background: {
                 position: center;
                 size: 80%;
@@ -235,8 +238,8 @@ body.page-home {
                 repeat: no-repeat;
               }
             }
-            // 3) 푸르넷 아이스쿨
-            &.work03 {
+            // project04) 푸르넷 아이스쿨
+            &.work04 {
               background: {
                 position: center;
                 size: 40%;
@@ -245,7 +248,17 @@ body.page-home {
                 repeat: no-repeat;
               }
             }
-            // work04, work05... 프로젝트 추가 시 썸네일 규칙 추가 필요
+            // project05) 보카킹
+            &.work05 {
+              background: {
+                position: center;
+                size: 40%;
+                image: url("#{$img-project}05/thumbnail.png");
+                color: color("white");
+                repeat: no-repeat;
+              }
+            }
+            // 프로젝트 추가 시 해당 id 번호로 &.work0N 규칙 추가
           }
           // 슬라이드 (PC 3개씩 / 모바일 1개 + 양옆 피크, 버튼 없이 스와이프)
           .works-slider {

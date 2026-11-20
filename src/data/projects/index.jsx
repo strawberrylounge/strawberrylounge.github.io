@@ -7,6 +7,7 @@ import Project01 from "./contents/Project01";
 import Project02 from "./contents/Project02";
 import Project03 from "./contents/Project03";
 import Project04 from "./contents/Project04";
+import Project05 from "./contents/Project05";
 
 import "./Projects.scss";
 
@@ -36,15 +37,6 @@ export const projects = [
       },
     ],
   },
-  // 임시로 순서 4번째로 변경
-  // {
-  //   id: "project02",
-  //   featured: false,
-  //   title: "tarot-shuffle",
-  //   techStack: ["Vue.js", "JavaScript", "HTML", "CSS"],
-  //   summary: "요약입니다.",
-  //   Content: Project02,
-  // },
   {
     id: "project03",
     featured: true,
@@ -87,7 +79,7 @@ export const projects = [
   },
   {
     id: "project02",
-    featured: true,
+    featured: false,
     title: "tarot-shuffle",
     techStack: [
       "HTML",
@@ -104,6 +96,29 @@ export const projects = [
       {
         label: "live",
         url: "https://tarot-shuffle.vercel.app/",
+        private: false,
+      },
+    ],
+  },
+  {
+    id: "project05",
+    featured: true,
+    title: "푸르넷 보카킹",
+    techStack: [
+      "HTML",
+      "SCSS",
+      "JavaScript",
+      "Vue.js",
+      "three.js",
+      "Vercel",
+      "github",
+    ],
+    summary: "작업 중",
+    Content: Project05,
+    links: [
+      {
+        label: "mockup",
+        url: "",
         private: false,
       },
     ],

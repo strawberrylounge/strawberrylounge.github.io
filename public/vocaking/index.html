@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Voca Quiz Mockup</title>
+  <meta name="description" content="게임형 영어 단어 퀴즈 UI 목업 (포트폴리오용)" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <main id="app" class="popup-wrap theme-1">
+    <!-- 창 닫기 -->
+    <button type="button" class="btn-close" id="closeBtn"><span class="sr-only">창 닫기</span></button>
+
+    <!-- ===== 퀴즈 화면 ===== -->
+    <section class="screen screen-quiz is-active" data-screen="quiz" aria-label="퀴즈">
+      <div class="quiz-progress font-nanum" id="quizProgress">1 / 5</div>
+
+      <header class="quiz-title">
+        <div class="lesson font-gamtan">LESSON 1. My Favorite Things</div>
+        <div class="step font-gamtan">
+          <span class="label-step font-gamtan" id="labelStep">1</span>
+          <span id="stepName">Warm-up</span>
+        </div>
+      </header>
+
+      <div class="study-contents">
+        <div class="quiz-wrap quiz-type4">
+          <span class="label-quiz-type font-nanum">그림 보고 단어 고르기</span>
+          <div class="inner-quiz">
+            <div class="image-area" id="quizImage" role="img" aria-label="문제 그림"></div>
+            <div class="select-answer" id="choices"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controllers">
+        <button type="button" class="btn-next-quiz font-nanum" id="nextBtn">다음<i aria-hidden="true"></i></button>
+      </div>
+
+      <!-- ALERT: 정답을 맞춰볼까요? (무반응 / 미응답 상태로 다음 클릭) -->
+      <div class="overlay alert-bg" id="alertBg" hidden>
+        <div class="alert-bubble font-nanum">정답을 맞춰볼까요?</div>
+      </div>
+      <!-- ALERT: VERY GOOD! -->
+      <div class="overlay correct-bg" id="correctBg" hidden aria-live="polite">
+        <div class="result-badge font-gamtan">
+          <span class="spark spark-1" aria-hidden="true"></span>
+          <span class="spark spark-2" aria-hidden="true"></span>
+          <span class="spark spark-3" aria-hidden="true"></span>
+          VERY GOOD!
+        </div>
+      </div>
+      <!-- ALERT: TRY AGAIN! -->
+      <div class="overlay wrong-bg" id="wrongBg" hidden aria-live="polite">
+        <div class="result-badge font-gamtan">TRY AGAIN!</div>
+      </div>
+    </section>
+
+    <!-- ===== 점수 확인 (100점 미만) ===== -->
+    <section class="screen screen-score" data-screen="score" aria-label="점수 확인">
+      <div class="result-logo font-gamtan">VOCA QUIZ</div>
+      <div class="result-check">
+        <div class="score-board">
+          <span class="score-caption font-nanum">SCORE</span>
+          <span class="score font-nanum"><b id="scoreValue">0</b>점</span>
+          <span class="score-char" aria-hidden="true"></span>
+        </div>
+        <button type="button" class="btn-study-completed font-nanum" id="checkWrongBtn">틀린 단어 확인하기</button>
+      </div>
+    </section>
+
+    <!-- ===== 오답 확인 ===== -->
+    <section class="screen screen-wrong" data-screen="wrong" aria-label="오답 확인">
+      <div class="review-game-score font-nanum">
+        <span>SCORE</span>
+        <data id="scoreLabel" value="0">0</data>
+      </div>
+      <div class="wrong-answer-check">
+        <div class="result-logo font-gamtan">VOCA QUIZ</div>
+        <div class="guide font-nanum">틀린 단어를 확인해 보세요!</div>
+        <div class="review-game-result-wrap" id="wrongList"></div>
+        <div class="controllers controllers-page">
+          <button type="button" class="btn-prev-quiz font-nanum" id="prevPageBtn"><i aria-hidden="true"></i>이전</button>
+          <span class="page-info font-nanum" id="pageInfo">1 / 1</span>
+          <button type="button" class="btn-next-quiz font-nanum" id="nextPageBtn">다음<i aria-hidden="true"></i></button>
+        </div>
+        <button type="button" class="btn-study-completed font-nanum" id="finishBtn">FINISH</button>
+      </div>
+    </section>
+
+    <!-- ===== 100점 ===== -->
+    <section class="screen screen-perfect" data-screen="perfect" aria-label="100점">
+      <div class="result-logo font-gamtan">VOCA QUIZ</div>
+      <div class="img-score100">
+        <div class="perfect-badge">
+          <span class="crown" aria-hidden="true"></span>
+          <span class="perfect-score font-gamtan">SCORE 100</span>
+          <span class="perfect-text font-nanum">우와, 대단해요!</span>
+        </div>
+        <button type="button" class="btn-study-completed font-nanum" id="perfectBtn">학습 완료하기</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- 목업 조작 패널 (실서비스에는 없음) -->
+  <aside class="mockup-panel" aria-label="목업 설정">
+    <span class="mockup-tag">MOCKUP</span>
+    <div class="theme-swatches" role="group" aria-label="코스 테마">
+      <button type="button" class="swatch is-on" data-theme="1" aria-label="테마 1"></button>
+      <button type="button" class="swatch" data-theme="2" aria-label="테마 2"></button>
+      <button type="button" class="swatch" data-theme="3" aria-label="테마 3"></button>
+      <button type="button" class="swatch" data-theme="4" aria-label="테마 4"></button>
+      <button type="button" class="swatch" data-theme="5" aria-label="테마 5"></button>
+      <button type="button" class="swatch" data-theme="6" aria-label="테마 6"></button>
+    </div>
+    <button type="button" class="panel-btn" id="soundBtn" aria-pressed="true">효과음 ON</button>
+    <button type="button" class="panel-btn" id="restartBtn">처음부터</button>
+  </aside>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
