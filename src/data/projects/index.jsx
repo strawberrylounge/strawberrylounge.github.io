@@ -42,7 +42,7 @@ export const projects = [
     featured: true,
     title: "푸르넷 예비교사 온라인 교육",
     company: "금성출판사",
-    period: "2026.01.05 ~ 2026.02.12",
+    period: "2026.01 ~ 2026.02",
     role: "프론트엔드 개발",
     techStack: ["jsp", "SCSS", "JavaScript", "jQuery", "Figma", "gitlab"],
     summary: "푸르넷 정식 교사가 되기 전 예비 교육을 받는 온라인 학습 사이트",
@@ -104,18 +104,19 @@ export const projects = [
     id: "project05",
     featured: true,
     title: "푸르넷 보카킹",
-    techStack: [
-      "HTML",
-      "SCSS",
-      "JavaScript",
-      "Vue.js",
-      "three.js",
-      "Vercel",
-      "github",
-    ],
-    summary: "작업 중",
+    company: "금성출판사",
+    period: "2025.06 ~ 2026.10",
+    role: "프론트엔드 개발",
+    techStack: ["jsp", "SCSS", "JavaScript", "jQuery", "Figma", "gitlab"],
+    summary:
+      "초등 필수 단어와 중등 빈출 단어까지 익히게 함으로써 실생활 말하기까지 가능하게 한 초등 영단어 프로그램",
     Content: Project05,
     links: [
+      {
+        label: "live",
+        url: "https://www.purunet-ischool.co.kr/myStudyRoom/study/vocaKing/vocaKingList.ks",
+        private: true,
+      },
       {
         label: "mockup",
         url: "https://strawberrylounge.github.io/vocaking/",
