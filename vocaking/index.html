@@ -57,6 +57,67 @@
       </div>
     </section>
 
+    <!-- ===== 학습 완료 ===== -->
+    <section class="screen screen-done" data-screen="done" aria-label="학습 완료">
+      <header class="quiz-title done-title">
+        <div class="lesson font-nanum">오늘 학습은 여기까지!</div>
+        <div class="step font-nanum">오늘 배운 영어 단어는 잊지 말고 꼭 기억해요.</div>
+      </header>
+      <div class="done-body">
+        <div class="perfect-badge done-badge">
+          <span class="crown" aria-hidden="true"></span>
+          <span class="perfect-score font-gamtan">GREAT JOB!</span>
+          <span class="perfect-text font-nanum">5개 단어를 모두 익혔어요</span>
+        </div>
+        <button type="button" class="btn-study-completed font-nanum" id="goReviewBtn">리뷰 게임 하러 가기</button>
+      </div>
+    </section>
+
+    <!-- ===== 리뷰 게임 시작 ===== -->
+    <section class="screen screen-review-start" data-screen="reviewStart" aria-label="리뷰 게임 시작">
+      <div class="result-logo font-gamtan">VOCA QUIZ</div>
+      <div class="review-start-body">
+        <div class="review-start-title font-gamtan">REVIEW GAME</div>
+        <button type="button" class="btn-start" id="startReviewBtn"><span class="sr-only">리뷰 게임 시작하기</span></button>
+        <p class="game-start-sentence font-nanum">얼마나 학습을 잘했는지 확인해 볼까요?</p>
+        <p class="game-start-rule font-nanum">한 문제에 10초! 시간이 지나면 다음 문제로 넘어가요.</p>
+      </div>
+    </section>
+
+    <!-- ===== 리뷰 게임 ===== -->
+    <section class="screen screen-review" data-screen="review" aria-label="리뷰 게임">
+      <div class="review-game-frame">
+        <div class="review-logo font-gamtan">REVIEW GAME</div>
+        <div class="live-score font-nanum">
+          <span>SCORE</span>
+          <data id="liveScore" value="0">0</data>
+        </div>
+        <ol class="review-game-step" id="reviewSteps" aria-label="진행 단계"></ol>
+      </div>
+
+      <div class="review-body">
+        <div class="review-game-progress-wrap">
+          <div class="timer-box font-nanum">
+            <span class="timer" aria-hidden="true"></span>
+            <span class="timer-text">Time(sec)</span>
+          </div>
+          <div class="review-game-progress" id="reviewProgress" role="progressbar"
+               aria-label="경과 시간" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+            <div class="progress-value" id="progressValue"></div>
+            <span class="progress-count font-nanum" id="progressCount">0</span>
+          </div>
+        </div>
+
+        <div class="quiz-wrap quiz-type4">
+          <span class="label-quiz-type font-nanum">그림 보고 단어 고르기</span>
+          <div class="inner-quiz">
+            <div class="image-area" id="reviewImage" role="img" aria-label="문제 그림"></div>
+            <div class="select-answer" id="reviewChoices"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== 점수 확인 (100점 미만) ===== -->
     <section class="screen screen-score" data-screen="score" aria-label="점수 확인">
       <div class="result-logo font-gamtan">VOCA QUIZ</div>
@@ -98,7 +159,7 @@
           <span class="perfect-score font-gamtan">SCORE 100</span>
           <span class="perfect-text font-nanum">우와, 대단해요!</span>
         </div>
-        <button type="button" class="btn-study-completed font-nanum" id="perfectBtn">학습 완료하기</button>
+        <button type="button" class="btn-study-completed font-nanum" id="perfectBtn">FINISH</button>
       </div>
     </section>
   </main>
@@ -115,7 +176,8 @@
       <button type="button" class="swatch" data-theme="6" aria-label="테마 6"></button>
     </div>
     <button type="button" class="panel-btn" id="soundBtn" aria-pressed="true">효과음 ON</button>
-    <button type="button" class="panel-btn" id="restartBtn">처음부터</button>
+    <button type="button" class="panel-btn" id="restartBtn">학습 퀴즈</button>
+    <button type="button" class="panel-btn" id="jumpReviewBtn">리뷰 게임</button>
   </aside>
 
   <script src="./js/main.js"></script>

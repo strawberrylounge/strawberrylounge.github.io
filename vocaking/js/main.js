@@ -3,6 +3,7 @@
    - 실서비스는 문제마다 폼 submit으로 페이지가 새로 로드되는 구조.
      목업은 한 페이지에서 문제를 교체하지만, 연출 타이밍과
      "이전 단계 값과 비교해 단계 전환 연출" 같은 로직은 원래 방식대로 유지했다.
+   - 흐름 : 학습 퀴즈(맞힐 때까지) → 학습 완료 → 리뷰 게임(10초 제한) → 점수 → 오답 확인
    ========================================================= */
 (function () {
   "use strict";
@@ -35,12 +36,18 @@
 
   /* ---------- 연출 타이밍 (실서비스와 동일) ---------- */
   const TIMING = {
-    beforeCorrect: 250,   // 정답 선택 → 정답 연출 시작
-    beforeWrong: 500,     // 오답 선택 → 오답 연출 시작 (정답 위치를 먼저 보여줌)
-    correct: 1500,        // 정답 연출 길이
-    wrong: 900,           // 오답 연출 길이
-    idle: 10000,          // 무반응 안내까지 대기
-    alert: 1000,          // 안내 노출 시간
+    beforeCorrect: 250, // 정답 선택 → 정답 연출 시작
+    beforeWrong: 500,   // 오답 선택 → 오답 연출 시작
+    correct: 1500,      // 정답 연출 길이
+    wrong: 900,         // 오답 연출 길이
+    idle: 10000,        // 무반응 안내까지 대기
+    alert: 1000,        // 안내 노출 시간
+  };
+  const REVIEW = {
+    limit: 10000,       // 문제당 제한 시간
+    warning: 7000,      // 3초 남았을 때부터 경고
+    afterAnswer: 700,   // 선택 후 효과음이 끝나고 다음 문제로
+    afterTimeOver: 900, // 시간 초과 효과음이 끝나고 다음 문제로
   };
   const WRONG_PER_PAGE = 2;
 
@@ -48,6 +55,7 @@
   const $ = (sel) => document.querySelector(sel);
   const app = $("#app");
   const els = {
+    // 학습 퀴즈
     progress: $("#quizProgress"),
     labelStep: $("#labelStep"),
     stepName: $("#stepName"),
@@ -57,6 +65,15 @@
     alertBg: $("#alertBg"),
     correctBg: $("#correctBg"),
     wrongBg: $("#wrongBg"),
+    // 리뷰 게임
+    liveScore: $("#liveScore"),
+    reviewSteps: $("#reviewSteps"),
+    reviewImage: $("#reviewImage"),
+    reviewChoices: $("#reviewChoices"),
+    reviewProgress: $("#reviewProgress"),
+    progressValue: $("#progressValue"),
+    progressCount: $("#progressCount"),
+    // 결과
     scoreValue: $("#scoreValue"),
     scoreLabel: $("#scoreLabel"),
     wrongList: $("#wrongList"),
@@ -65,30 +82,24 @@
     nextPageBtn: $("#nextPageBtn"),
     soundBtn: $("#soundBtn"),
   };
-  document.querySelector(".lesson").textContent = LESSON;
+  document.querySelector(".screen-quiz .lesson").textContent = LESSON;
 
   /* ---------- 상태 ---------- */
-  const state = {
-    order: [],
-    index: 0,
-    prevStep: null,
-    answered: false,
-    clickDetected: false,
-    answers: [],
-    wrongs: [],
-    page: 0,
-    timers: [],
-  };
+  const study = { order: [], index: 0, prevStep: null, solved: false, locked: false, clickDetected: false };
+  const review = { order: [], index: 0, score: 0, answers: [], locked: false };
+  const result = { wrongs: [], page: 0 };
+  let timers = [];
 
-  // 화면 전환 시 남은 타이머가 이전 화면에 영향을 주지 않도록 한 곳에서 관리
+  // 화면 전환 시 남은 타이머가 다른 화면에 영향을 주지 않도록 한 곳에서 관리
   function later(fn, ms) {
     const id = setTimeout(fn, ms);
-    state.timers.push(id);
+    timers.push(id);
     return id;
   }
   function clearTimers() {
-    state.timers.forEach(clearTimeout);
-    state.timers = [];
+    timers.forEach(clearTimeout);
+    timers = [];
+    stopReviewTimer();
   }
 
   /* ---------- 효과음 (Web Audio로 생성) ---------- */
@@ -121,7 +132,10 @@
     check: () => tone([880], { dur: 0.06, type: "triangle", vol: 0.1 }),
     correct: () => tone([659, 784, 1047], { dur: 0.2, type: "triangle" }),
     wrong: () => tone([330, 247], { dur: 0.24, type: "square", gap: 0.16, vol: 0.06 }),
-    alert: () => tone([523, 659], { dur: 0.12, type: "sine", gap: 0.1, vol: 0.1 }),
+    alert: () => tone([523, 659], { dur: 0.12, gap: 0.1, vol: 0.1 }),
+    tick: () => tone([1200], { dur: 0.03, type: "square", vol: 0.03 }),
+    tickHurry: () => tone([1600], { dur: 0.04, type: "square", vol: 0.05 }),
+    timeOver: () => tone([520, 390, 260], { dur: 0.2, type: "sawtooth", gap: 0.14, vol: 0.06 }),
   };
 
   /* ---------- 유틸 ---------- */
@@ -132,6 +146,10 @@
       [a[i], a[j]] = [a[j], a[i]];
     }
     return a;
+  }
+  function shuffledQuestions(shuffleOrder) {
+    const list = QUESTIONS.map((q) => Object.assign({}, q, { choices: shuffle(q.choices) }));
+    return shuffleOrder ? shuffle(list) : list;
   }
   // 같은 클래스를 다시 붙여 애니메이션을 처음부터 재생
   function replayClass(el, cls) {
@@ -155,95 +173,95 @@
       s.classList.toggle("is-active", s.dataset.screen === name);
     });
   }
-
-  /* =========================================================
-     퀴즈
-     ========================================================= */
-  function startQuiz() {
+  function isScreen(name) {
+    return document.querySelector(`.screen[data-screen="${name}"]`).classList.contains("is-active");
+  }
+  function choiceButtons(words) {
+    return words
+      .map((c) => `<button type="button" class="answer answer-text font-gamtan" data-choice="${c}">${c}</button>`)
+      .join("");
+  }
+  function resetAll() {
     clearTimers();
     [els.alertBg, els.correctBg, els.wrongBg].forEach(hideOverlay);
-    state.order = QUESTIONS.map((q) => Object.assign({}, q, { choices: shuffle(q.choices) }));
-    state.index = 0;
-    state.prevStep = null;
-    state.answers = [];
+  }
+
+  /* =========================================================
+     학습 퀴즈 : 맞힐 때까지 다시 고른다
+     ========================================================= */
+  function startQuiz() {
+    resetAll();
+    study.order = shuffledQuestions(false);
+    study.index = 0;
+    study.prevStep = null;
     showScreen("quiz");
     renderQuestion();
   }
 
   function renderQuestion() {
-    const q = state.order[state.index];
-    state.answered = false;
-    state.clickDetected = false;
+    const q = study.order[study.index];
+    study.solved = false;
+    study.locked = false;
+    study.clickDetected = false;
 
-    els.progress.textContent = `${state.index + 1} / ${state.order.length}`;
+    els.progress.textContent = `${study.index + 1} / ${study.order.length}`;
     els.labelStep.textContent = q.step;
     els.stepName.textContent = STEP_NAME[q.step];
 
     // 이전 문제와 단계가 다를 때만 단계 라벨 흔들기
-    if (state.prevStep !== null && state.prevStep !== q.step) {
+    if (study.prevStep !== null && study.prevStep !== q.step) {
       replayClass(els.labelStep, "moved-step");
     }
-    state.prevStep = q.step;
+    study.prevStep = q.step;
 
     els.image.innerHTML = SVG[q.word];
     replayClass(els.image, "is-enter");
-
-    els.choices.innerHTML = q.choices
-      .map(
-        (c) =>
-          `<button type="button" class="answer answer-text font-gamtan" data-choice="${c}">${c}</button>`
-      )
-      .join("");
+    els.choices.innerHTML = choiceButtons(q.choices);
 
     startIdleTimer();
   }
 
   // 일정 시간 아무 조작이 없으면 "정답을 맞춰볼까요?"를 잠깐 띄운다
   function startIdleTimer() {
-    const index = state.index;
+    const index = study.index;
     later(() => {
-      if (index === state.index && !state.clickDetected && !state.answered) {
-        flashAlert();
-      }
+      if (index === study.index && !study.clickDetected && !study.solved) flashAlert();
     }, TIMING.idle);
   }
 
   function flashAlert() {
     SFX.alert();
     showOverlay(els.alertBg);
-    els.alertBg.classList.remove("animating");
+    els.alertBg.classList.remove("animating"); // 클릭으로 바로 닫을 수 있게
     later(() => hideOverlay(els.alertBg), TIMING.alert);
   }
 
-  function onChoice(btn) {
-    if (state.answered) return;
-    state.answered = true;
-    state.clickDetected = true;
+  function setChoicesDisabled(container, disabled) {
+    container.querySelectorAll(".answer").forEach((b) => {
+      // 이미 판정된 보기는 계속 잠가 둔다
+      b.disabled = disabled || b.classList.contains("wrong") || b.classList.contains("correct");
+    });
+  }
+
+  function onStudyChoice(btn) {
+    if (study.solved || study.locked) return;
+    study.locked = true;
+    study.clickDetected = true;
     SFX.check();
 
-    const q = state.order[state.index];
-    const picked = btn.dataset.choice;
-    const isCorrect = picked === q.word;
-    const buttons = els.choices.querySelectorAll(".answer");
-
-    // 연출 중 중복 입력 방지
-    buttons.forEach((b) => (b.disabled = true));
-
-    state.answers.push({ no: state.index + 1, word: q.word, picked, isCorrect });
+    const isCorrect = btn.dataset.choice === study.order[study.index].word;
+    btn.classList.add(isCorrect ? "correct" : "wrong");
+    setChoicesDisabled(els.choices, true); // 연출 중 중복 입력 방지
 
     if (isCorrect) {
-      btn.classList.add("correct");
+      study.solved = true;
       later(() => showResult(true), TIMING.beforeCorrect);
     } else {
-      btn.classList.add("wrong");
-      buttons.forEach((b) => {
-        if (b.dataset.choice === q.word) b.classList.add("reveal");
-      });
       later(() => showResult(false), TIMING.beforeWrong);
     }
   }
 
-  // 정답·오답 연출 → 연출이 끝난 뒤 다음 문제로
+  // 정답·오답 연출. 정답이면 연출이 끝난 뒤 다음 문제로, 오답이면 다시 고를 수 있게
   function showResult(isCorrect) {
     const bg = isCorrect ? els.correctBg : els.wrongBg;
     isCorrect ? SFX.correct() : SFX.wrong();
@@ -251,14 +269,158 @@
 
     later(() => {
       hideOverlay(bg);
-      goNext();
+      if (isCorrect) {
+        goNextQuestion();
+      } else {
+        study.locked = false;
+        setChoicesDisabled(els.choices, false);
+      }
     }, isCorrect ? TIMING.correct : TIMING.wrong);
   }
 
-  function goNext() {
-    state.index += 1;
-    if (state.index < state.order.length) {
+  function goNextQuestion() {
+    study.index += 1;
+    if (study.index < study.order.length) {
       renderQuestion();
+    } else {
+      clearTimers();
+      showScreen("done");
+    }
+  }
+
+  /* =========================================================
+     리뷰 게임 : 문제당 10초, 한 번만 고른다
+     ========================================================= */
+  function openReviewStart() {
+    resetAll();
+    showScreen("reviewStart");
+  }
+
+  function startReview() {
+    resetAll();
+    review.order = shuffledQuestions(true);
+    review.index = 0;
+    review.score = 0;
+    review.answers = [];
+    setLiveScore(0, false);
+    showScreen("review");
+    renderReviewQuestion();
+  }
+
+  function renderReviewQuestion() {
+    const q = review.order[review.index];
+    review.locked = false;
+
+    els.reviewSteps.innerHTML = review.order
+      .map((_, i) => {
+        if (i < review.index) return '<li class="step step-complete"><span class="sr-only">완료</span></li>';
+        if (i === review.index) return `<li class="step step-current font-nanum" aria-current="step">${i + 1}</li>`;
+        return '<li class="step step-incomplete"><span class="sr-only">다음 단계</span></li>';
+      })
+      .join("");
+
+    els.reviewImage.innerHTML = SVG[q.word];
+    replayClass(els.reviewImage, "is-enter");
+    els.reviewChoices.innerHTML = choiceButtons(q.choices);
+
+    startReviewTimer();
+  }
+
+  function setLiveScore(score, animate) {
+    els.liveScore.textContent = score;
+    els.liveScore.value = score;
+    if (animate) replayClass(els.liveScore, "bump");
+  }
+
+  /* ---------- 타이머 ----------
+     setInterval 횟수를 세지 않고 시작 시각과의 차이로 계산한다.
+     탭이 비활성화되어 인터벌이 늦게 돌아도 경과 시간은 정확하다. */
+  const timer = { id: null, startAt: 0, lastSec: -1 };
+
+  function startReviewTimer() {
+    stopReviewTimer();
+    timer.startAt = Date.now();
+    timer.lastSec = -1;
+    timer.id = setInterval(updateReviewTimer, 50);
+    updateReviewTimer();
+  }
+
+  function stopReviewTimer() {
+    if (timer.id) clearInterval(timer.id);
+    timer.id = null;
+  }
+
+  function resetGauge() {
+    els.progressValue.style.setProperty("--p", 0);
+    els.progressValue.classList.remove("warning");
+    els.progressCount.textContent = "0";
+    els.reviewProgress.setAttribute("aria-valuenow", "0");
+  }
+
+  function updateReviewTimer() {
+    const elapsed = Math.min(Date.now() - timer.startAt, REVIEW.limit);
+
+    // 진행률 : 아래에서 위로 차오른다
+    els.progressValue.style.setProperty("--p", elapsed / REVIEW.limit);
+
+    // 카운트 1 ~ 10
+    const count = Math.max(1, Math.min(Math.floor(elapsed / 1000), 10));
+    els.progressCount.textContent = count;
+    els.reviewProgress.setAttribute("aria-valuenow", String(count));
+
+    // 3초 남았을 때부터 경고
+    els.progressValue.classList.toggle("warning", elapsed >= REVIEW.warning);
+
+    // 1초마다 째깍 소리, 경고 구간에서는 더 높게
+    const sec = Math.floor(elapsed / 1000);
+    if (sec !== timer.lastSec && elapsed < REVIEW.limit) {
+      timer.lastSec = sec;
+      elapsed >= REVIEW.warning ? SFX.tickHurry() : SFX.tick();
+    }
+
+    if (elapsed >= REVIEW.limit) {
+      stopReviewTimer();
+      onTimeOver();
+    }
+  }
+
+  function onReviewChoice(btn) {
+    if (review.locked) return;
+    review.locked = true;
+    stopReviewTimer();
+
+    const q = review.order[review.index];
+    const isCorrect = btn.dataset.choice === q.word;
+
+    btn.classList.add(isCorrect ? "correct" : "wrong");
+    setChoicesDisabled(els.reviewChoices, true);
+    review.answers.push({ word: q.word, picked: btn.dataset.choice, isCorrect });
+
+    if (isCorrect) {
+      SFX.correct();
+      review.score += Math.round(100 / review.order.length);
+      setLiveScore(review.score, true);
+    } else {
+      SFX.wrong();
+    }
+    later(goNextReview, REVIEW.afterAnswer);
+  }
+
+  function onTimeOver() {
+    if (review.locked) return;
+    review.locked = true;
+    setChoicesDisabled(els.reviewChoices, true);
+    SFX.timeOver();
+    const q = review.order[review.index];
+    review.answers.push({ word: q.word, picked: null, isCorrect: false });
+    later(goNextReview, REVIEW.afterTimeOver);
+  }
+
+  function goNextReview() {
+    review.index += 1;
+    resetGauge();
+    if (review.index < review.order.length) {
+      renderReviewQuestion();
     } else {
       showScore();
     }
@@ -269,8 +431,8 @@
      ========================================================= */
   function showScore() {
     clearTimers();
-    const correctCnt = state.answers.filter((a) => a.isCorrect).length;
-    const score = Math.round((correctCnt / state.answers.length) * 100);
+    const correctCnt = review.answers.filter((a) => a.isCorrect).length;
+    const score = Math.round((correctCnt / review.answers.length) * 100);
 
     if (score === 100) {
       showScreen("perfect");
@@ -280,35 +442,40 @@
     els.scoreValue.textContent = score;
     els.scoreLabel.textContent = score;
     els.scoreLabel.value = score;
-    state.wrongs = state.answers.filter((a) => !a.isCorrect);
-    state.page = 0;
+    result.wrongs = review.answers
+      .map((a, i) => Object.assign({ no: i + 1 }, a))
+      .filter((a) => !a.isCorrect);
+    result.page = 0;
     showScreen("score");
   }
 
   function renderWrongPage() {
-    const total = Math.max(1, Math.ceil(state.wrongs.length / WRONG_PER_PAGE));
-    const start = state.page * WRONG_PER_PAGE;
-    const items = state.wrongs.slice(start, start + WRONG_PER_PAGE);
+    const total = Math.max(1, Math.ceil(result.wrongs.length / WRONG_PER_PAGE));
+    const start = result.page * WRONG_PER_PAGE;
+    const items = result.wrongs.slice(start, start + WRONG_PER_PAGE);
 
     els.wrongList.innerHTML = items
-      .map(
-        (a) => `
+      .map((a) => {
+        const myAnswer = a.picked
+          ? `<div class="my-answer font-gamtan"><span>${a.picked}</span><em>내 답</em></div>`
+          : '<div class="my-answer is-timeover font-gamtan"><span>Time Over</span><em>내 답</em></div>';
+        return `
         <article class="review-game-result">
           <div class="result-top">
             <h3 class="result-type font-nanum">${a.no}. ${QUIZ_TYPE}</h3>
             <div class="result-image">${SVG[a.word]}</div>
           </div>
           <div class="result-answer">
-            <div class="my-answer font-gamtan"><span>${a.picked}</span><em>내 답</em></div>
+            ${myAnswer}
             <div class="answer font-gamtan"><span>${a.word}</span><em>정답</em></div>
           </div>
-        </article>`
-      )
+        </article>`;
+      })
       .join("");
 
-    els.pageInfo.textContent = `${state.page + 1} / ${total}`;
-    els.prevPageBtn.disabled = state.page === 0;
-    els.nextPageBtn.disabled = state.page >= total - 1;
+    els.pageInfo.textContent = `${result.page + 1} / ${total}`;
+    els.prevPageBtn.disabled = result.page === 0;
+    els.nextPageBtn.disabled = result.page >= total - 1;
     els.prevPageBtn.parentElement.hidden = total === 1;
   }
 
@@ -317,35 +484,45 @@
      ========================================================= */
   els.choices.addEventListener("click", (e) => {
     const btn = e.target.closest(".answer");
-    if (btn && !btn.disabled) onChoice(btn);
+    if (btn && !btn.disabled) onStudyChoice(btn);
+  });
+  els.reviewChoices.addEventListener("click", (e) => {
+    const btn = e.target.closest(".answer");
+    if (btn && !btn.disabled) onReviewChoice(btn);
   });
 
-  // 답을 고르지 않고 다음을 누르면 안내만 보여준다
+  // 아직 맞히지 않았는데 다음을 누르면 안내만 보여준다
   els.nextBtn.addEventListener("click", () => {
-    state.clickDetected = true;
-    if (!state.answered) flashAlert();
+    study.clickDetected = true;
+    if (!study.solved) flashAlert();
   });
-
   els.alertBg.addEventListener("click", () => hideOverlay(els.alertBg));
+
+  $("#goReviewBtn").addEventListener("click", openReviewStart);
+  $("#startReviewBtn").addEventListener("click", startReview);
 
   $("#checkWrongBtn").addEventListener("click", () => {
     renderWrongPage();
     showScreen("wrong");
   });
   els.prevPageBtn.addEventListener("click", () => {
-    state.page -= 1;
+    result.page -= 1;
     renderWrongPage();
   });
   els.nextPageBtn.addEventListener("click", () => {
-    state.page += 1;
+    result.page += 1;
     renderWrongPage();
   });
-  $("#finishBtn").addEventListener("click", startQuiz);
-  $("#perfectBtn").addEventListener("click", startQuiz);
+  $("#finishBtn").addEventListener("click", openReviewStart);
+  $("#perfectBtn").addEventListener("click", openReviewStart);
 
   $("#closeBtn").addEventListener("click", () => {
-    const onQuiz = document.querySelector('.screen-quiz').classList.contains("is-active");
-    if (!onQuiz || confirm("학습이 완료되지 않았습니다. 처음부터 다시 할까요?")) startQuiz();
+    if (isScreen("quiz") || isScreen("review")) {
+      if (!confirm("학습이 완료되지 않았습니다. 처음부터 다시 할까요?")) return;
+      isScreen("quiz") ? startQuiz() : openReviewStart();
+      return;
+    }
+    startQuiz();
   });
 
   /* ---------- 목업 패널 ---------- */
@@ -361,6 +538,7 @@
     els.soundBtn.textContent = soundOn ? "효과음 ON" : "효과음 OFF";
   });
   $("#restartBtn").addEventListener("click", startQuiz);
+  $("#jumpReviewBtn").addEventListener("click", openReviewStart);
 
   startQuiz();
 })();
