@@ -3,8 +3,9 @@ const Project05 = () => (
     <section>
       <h4>📌 작업 배경</h4>
       <p className="mb12 word-keep-all">
-        푸르넷 아이스쿨 안에 들어간 유아·초등 대상 영어 단어 학습 서비스입니다.
-        영상으로 단어를 익히고, 퀴즈와 리뷰 게임으로 복습하는 구조입니다.
+        푸르넷 서비스 중 유아와 초등을 대상으로 하는 영어 단어 학습
+        서비스입니다. 영상으로 단어를 익히고, 퀴즈와 리뷰 게임으로 복습하는
+        구조입니다.
       </p>
       <p className="mb12 word-keep-all">
         사용자가 아이들이라 &quot;문제를 푼다&quot;보다 &quot;게임을
@@ -26,7 +27,8 @@ const Project05 = () => (
           학습 목록, 퀴즈, 리뷰 게임, 결과·오답 확인 화면 마크업 및 스타일링
         </li>
         <li>
-          정답·오답 피드백, 단계 전환, 무반응 안내 등 인터랙션 개발(jQuery)
+          정답·오답 피드백, 단계 전환, 무반응 안내, 리뷰 게임 타이머·진행 바
+          등 인터랙션 개발(jQuery)
         </li>
         <li>코스 6종별 테마 및 태블릿·모바일 가로/세로 반응형 대응</li>
       </ul>
@@ -169,6 +171,39 @@ setTimeout(() => {
   0%, 33.33%   { transform: translateX(-50%) rotate(0deg); }
   66.66%, 100% { transform: translateX(-50%) rotate(360deg); }
 }`}</code>
+          </pre>
+        </li>
+
+        <li>
+          <h5>남은 시간이 눈에 보이는 진행 바</h5>
+          <p>
+            리뷰 게임은 문제당 10초 제한이 있어서, 숫자만 보여주는 대신 게이지가
+            차오르게 했습니다. 3초가 남으면 게이지가 빨갛게 깜빡이며 서두르라는
+            신호를 주고, 시간이 다 되면 Time Over로 기록하고 다음 문제로
+            넘어갑니다. 경과 시간은 인터벌 횟수를 세지 않고 시작 시각과의
+            차이로 계산해서, 탭이 비활성화되어 인터벌이 늦게 돌아도 시간이
+            어긋나지 않게 했습니다.
+          </p>
+          <pre className="description-code">
+            <code>{`// 핵심만 간추린 코드
+const LIMIT = 10000;
+const startAt = Date.now();
+
+const timerId = setInterval(() => {
+  const elapsed = Math.min(Date.now() - startAt, LIMIT);
+
+  // 진행률만큼 게이지가 아래에서 위로 차오름
+  $(".progress-value").css("height", (elapsed / LIMIT) * 100 + "%");
+  $(".progress-count").text(Math.max(1, Math.floor(elapsed / 1000)));
+
+  // 3초 남았을 때부터 경고 깜빡임
+  $(".progress-value").toggleClass("warning", elapsed >= 7000);
+
+  if (elapsed >= LIMIT) {
+    clearInterval(timerId);
+    timeOver();   // 시간 초과 효과음 → 다음 문제
+  }
+}, 50);`}</code>
           </pre>
         </li>
 

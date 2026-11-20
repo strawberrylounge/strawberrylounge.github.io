@@ -118,7 +118,7 @@ export const projects = [
     links: [
       {
         label: "mockup",
-        url: "",
+        url: "https://strawberrylounge.github.io/vocaking/",
         private: false,
       },
     ],
